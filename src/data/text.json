@@ -1,0 +1,315 @@
+[
+  {
+    "id": "upfromslaveryan08washgoog",
+    "type": "text",
+    "url": "https://archive.org/details/upfromslaveryan08washgoog",
+    "title": "Up from Slavery: An Autobiography",
+    "creator": "Booker T. Washington",
+    "year": "1906",
+    "tags": ["autobiografia", "escravidão", "liberdade", "clássico"]
+  },
+  {
+    "id": "DKC0109",
+    "type": "text",
+    "url": "https://archive.org/details/DKC0109",
+    "title": "Narrative of the Life of Frederick Douglass, an American Slave",
+    "creator": "Frederick Douglass",
+    "year": "1845",
+    "tags": ["autobiografia", "escravidão", "liberdade", "clássico"]
+  },
+  {
+    "id": "douglass-fifth-of-july-speech",
+    "type": "text",
+    "url": "https://archive.org/details/douglass-fifth-of-july-speech",
+    "title": "Douglass' Fifth of July Speech",
+    "creator": "Frederick Douglass",
+    "year": "1852",
+    "tags": ["discurso", "escravidão", "liberdade", "história"]
+  },
+  {
+    "id": "blackboyrecordof00wrigrich",
+    "type": "text",
+    "url": "https://archive.org/details/blackboyrecordof00wrigrich",
+    "title": "Black Boy: A Record of Childhood and Youth",
+    "creator": "Richard Wright",
+    "year": "1945",
+    "tags": ["autobiografia", "literatura", "memórias", "clássico"]
+  },
+  {
+    "id": "in.ernet.dli.2015.175481",
+    "type": "text",
+    "url": "https://archive.org/details/in.ernet.dli.2015.175481",
+    "title": "Twelve Million Black Voices",
+    "creator": "Richard Wright",
+    "year": "1947",
+    "tags": ["fotografia", "história", "ensaio", "grande migração"]
+  },
+  {
+    "id": "coloredmehurston3",
+    "type": "text",
+    "url": "https://archive.org/details/coloredmehurston3",
+    "title": "How It Feels to Be Colored Me",
+    "creator": "Zora Neale Hurston",
+    "year": "1928",
+    "tags": ["ensaio", "literatura", "mulheres negras", "clássico"]
+  },
+  {
+    "id": "firenexttime00bald_0",
+    "type": "text",
+    "url": "https://archive.org/details/firenexttime00bald_0",
+    "title": "The Fire Next Time",
+    "creator": "James Baldwin",
+    "year": "1993",
+    "tags": ["ensaio", "literatura", "direitos civis", "clássico"]
+  },
+  {
+    "id": "invisibleman00elli_1",
+    "type": "text",
+    "url": "https://archive.org/details/invisibleman00elli_1",
+    "title": "Invisible Man",
+    "creator": "Ralph Ellison",
+    "year": "1989",
+    "tags": ["romance", "literatura", "clássico", "ficção"]
+  },
+  {
+    "id": "battle-royal",
+    "type": "text",
+    "url": "https://archive.org/details/battle-royal",
+    "title": "Battle Royal (Invisible Man, cap. 1)",
+    "creator": "Ralph Ellison",
+    "year": "1952",
+    "tags": ["romance", "literatura", "clássico", "ficção"]
+  },
+  {
+    "id": "sula00morr_1",
+    "type": "text",
+    "url": "https://archive.org/details/sula00morr_1",
+    "title": "Sula",
+    "creator": "Toni Morrison",
+    "year": "1974",
+    "tags": ["romance", "literatura", "mulheres negras", "clássico"]
+  },
+  {
+    "id": "colourpurple0000alic",
+    "type": "text",
+    "url": "https://archive.org/details/colourpurple0000alic",
+    "title": "The Color Purple",
+    "creator": "Alice Walker",
+    "year": "2004",
+    "tags": ["romance", "literatura", "mulheres negras", "clássico"]
+  },
+  {
+    "id": "insearchofourmot00walk_2",
+    "type": "text",
+    "url": "https://archive.org/details/insearchofourmot00walk_2",
+    "title": "In Search of Our Mothers' Gardens",
+    "creator": "Alice Walker",
+    "year": "2004",
+    "tags": ["ensaio", "literatura", "mulheres negras", "feminismo"]
+  },
+  {
+    "id": "lorde-audre-sister-outsider",
+    "type": "text",
+    "url": "https://archive.org/details/lorde-audre-sister-outsider",
+    "title": "Sister Outsider: Essays and Speeches",
+    "creator": "Audre Lorde",
+    "year": "2007",
+    "tags": ["ensaio", "literatura", "mulheres negras", "feminismo"]
+  },
+  {
+    "id": "cancerjournals00lord_0",
+    "type": "text",
+    "url": "https://archive.org/details/cancerjournals00lord_0",
+    "title": "The Cancer Journals",
+    "creator": "Audre Lorde",
+    "year": "1997",
+    "tags": ["memórias", "literatura", "mulheres negras", "feminismo"]
+  },
+  {
+    "id": "passing00lars_0",
+    "type": "text",
+    "url": "https://archive.org/details/passing00lars_0",
+    "title": "Passing",
+    "creator": "Nella Larsen",
+    "year": "1997",
+    "tags": ["romance", "literatura", "mulheres negras", "clássico"]
+  },
+  {
+    "id": "poemsonvarioussu00whea",
+    "type": "text",
+    "url": "https://archive.org/details/poemsonvarioussu00whea",
+    "title": "Poems on Various Subjects, Religious and Moral",
+    "creator": "Phillis Wheatley",
+    "year": "1773",
+    "tags": ["poesia", "literatura", "mulheres negras", "clássico"]
+  },
+  {
+    "id": "completepoemspa00dunbgoog",
+    "type": "text",
+    "url": "https://archive.org/details/completepoemspa00dunbgoog",
+    "title": "The Complete Poems of Paul Laurence Dunbar",
+    "creator": "Paul Laurence Dunbar",
+    "year": "1913",
+    "tags": ["poesia", "literatura", "clássico"]
+  },
+  {
+    "id": "folksfromdixie00dunbgoog",
+    "type": "text",
+    "url": "https://archive.org/details/folksfromdixie00dunbgoog",
+    "title": "Folks from Dixie",
+    "creator": "Paul Laurence Dunbar",
+    "year": "1898",
+    "tags": ["ficção", "literatura", "clássico", "contos"]
+  },
+  {
+    "id": "the-autobiography-of-malcolm-x-as-told-to-alex-haley-malcolm-x-alex-haley-1992",
+    "type": "text",
+    "url": "https://archive.org/details/the-autobiography-of-malcolm-x-as-told-to-alex-haley-malcolm-x-alex-haley-1992",
+    "title": "The Autobiography of Malcolm X",
+    "creator": "Malcolm X, Alex Haley",
+    "year": "1992",
+    "tags": ["autobiografia", "malcolm x", "direitos civis", "clássico"]
+  },
+  {
+    "id": "incidentsinlifeo1861jaco",
+    "type": "text",
+    "url": "https://archive.org/details/incidentsinlifeo1861jaco",
+    "title": "Incidents in the Life of a Slave Girl",
+    "creator": "Harriet Jacobs",
+    "year": "1861",
+    "tags": ["autobiografia", "escravidão", "mulheres negras", "clássico"]
+  },
+  {
+    "id": "12yearsaslave00nortrich",
+    "type": "text",
+    "url": "https://archive.org/details/12yearsaslave00nortrich",
+    "title": "Twelve Years a Slave",
+    "creator": "Solomon Northup",
+    "year": "1895",
+    "tags": ["autobiografia", "escravidão", "liberdade", "clássico"]
+  },
+  {
+    "id": "blackreconstruc00dubo",
+    "type": "text",
+    "url": "https://archive.org/details/blackreconstruc00dubo",
+    "title": "Black Reconstruction in America",
+    "creator": "W.E.B. Du Bois",
+    "year": "1935",
+    "tags": ["história", "ensaio", "reconstrução", "teoria"]
+  },
+  {
+    "id": "history_green_book",
+    "type": "text",
+    "url": "https://archive.org/details/history_green_book",
+    "title": "The Negro Motorist Green Book",
+    "year": "1949",
+    "tags": ["guia", "história", "viagem", "segregação"]
+  },
+  {
+    "id": "We-Charge-Genocide-1970",
+    "type": "text",
+    "url": "https://archive.org/details/We-Charge-Genocide-1970",
+    "title": "We Charge Genocide: The Crime of Government Against the Negro People",
+    "year": "1970",
+    "tags": ["ensaio", "direitos civis", "panteras negras", "história"]
+  },
+  {
+    "id": "isbn_2740280545003",
+    "type": "text",
+    "url": "https://archive.org/details/isbn_2740280545003",
+    "title": "The Interesting Narrative of the Life of Olaudah Equiano",
+    "creator": "Olaudah Equiano",
+    "year": "1789",
+    "tags": ["autobiografia", "escravidão", "liberdade", "clássico"]
+  },
+  {
+    "id": "raisininsun0000hans_c8a7",
+    "type": "text",
+    "url": "https://archive.org/details/raisininsun0000hans_c8a7",
+    "title": "A Raisin in the Sun",
+    "creator": "Lorraine Hansberry",
+    "year": "1959",
+    "tags": ["teatro", "literatura", "mulheres negras", "clássico"]
+  },
+  {
+    "id": "miseducationofne00cart",
+    "type": "text",
+    "url": "https://archive.org/details/miseducationofne00cart",
+    "title": "The Mis-Education of the Negro",
+    "creator": "Carter G. Woodson",
+    "year": "1933",
+    "tags": ["ensaio", "história", "educação", "clássico"]
+  },
+  {
+    "id": "thewretchedoftheearth",
+    "type": "text",
+    "url": "https://archive.org/details/thewretchedoftheearth",
+    "title": "The Wretched of the Earth",
+    "creator": "Frantz Fanon",
+    "year": "1961",
+    "tags": ["ensaio", "teoria", "história", "anticolonialismo"]
+  },
+  {
+    "id": "iknowwhycagedbir0000ange_m6v8",
+    "type": "text",
+    "url": "https://archive.org/details/iknowwhycagedbir0000ange_m6v8",
+    "title": "I Know Why the Caged Bird Sings",
+    "creator": "Maya Angelou",
+    "year": "1969",
+    "tags": ["autobiografia", "literatura", "mulheres negras", "clássico"]
+  },
+  {
+    "id": "soulsblackfolke01boisgoog",
+    "type": "text",
+    "url": "https://archive.org/details/soulsblackfolke01boisgoog",
+    "title": "The Souls of Black Folk",
+    "creator": "W.E.B. Du Bois",
+    "year": "1903",
+    "tags": ["ensaio", "história", "teoria", "clássico"]
+  },
+  {
+    "id": "notwithoutlaught00hugh",
+    "type": "text",
+    "url": "https://archive.org/details/notwithoutlaught00hugh",
+    "title": "Not Without Laughter",
+    "creator": "Langston Hughes",
+    "year": "1930",
+    "tags": ["romance", "literatura", "harlem renaissance", "clássico"]
+  },
+  {
+    "id": "gotellitonmounta0000bald",
+    "type": "text",
+    "url": "https://archive.org/details/gotellitonmounta0000bald",
+    "title": "Go Tell It on the Mountain",
+    "creator": "James Baldwin",
+    "year": "1953",
+    "tags": ["romance", "literatura", "clássico"]
+  },
+  {
+    "id": "narrativeofsojou00gilbiala",
+    "type": "text",
+    "url": "https://archive.org/details/narrativeofsojou00gilbiala",
+    "title": "Narrative of Sojourner Truth",
+    "creator": "Sojourner Truth",
+    "year": "1878",
+    "tags": ["autobiografia", "escravidão", "mulheres negras", "clássico"]
+  },
+  {
+    "id": "home-to-harlem-novel",
+    "type": "text",
+    "url": "https://archive.org/details/home-to-harlem-novel",
+    "title": "Home to Harlem",
+    "creator": "Claude McKay",
+    "year": "1928",
+    "tags": ["romance", "literatura", "harlem renaissance", "clássico"]
+  },
+  {
+    "id": "autobiographyofm00gain_0",
+    "type": "text",
+    "url": "https://archive.org/details/autobiographyofm00gain_0",
+    "title": "The Autobiography of Miss Jane Pittman",
+    "creator": "Ernest J. Gaines",
+    "year": "1971",
+    "tags": ["romance", "literatura", "história", "clássico"]
+  }
+]

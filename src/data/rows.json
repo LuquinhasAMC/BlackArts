@@ -1,0 +1,197 @@
+[
+  {
+    "id": "jazz-classico",
+    "title": "Jazz clássico",
+    "tags": ["jazz"]
+  },
+  {
+    "id": "blues-essenciais",
+    "title": "Blues essenciais",
+    "tags": ["blues"]
+  },
+  {
+    "id": "soul-e-rnb",
+    "title": "Soul e R&B",
+    "tags": ["soul", "r&b"]
+  },
+  {
+    "id": "funk-e-ritmo",
+    "title": "Funk e ritmo",
+    "tags": ["funk"]
+  },
+  {
+    "id": "gospel-e-espiritual",
+    "title": "Gospel e espiritual",
+    "tags": ["gospel", "espiritual"]
+  },
+  {
+    "id": "bebop-e-improviso",
+    "title": "Bebop e improviso",
+    "tags": ["bebop"]
+  },
+  {
+    "id": "big-band-e-swing",
+    "title": "Big band e swing",
+    "tags": ["big band", "swing"]
+  },
+  {
+    "id": "saxofone",
+    "title": "Saxofone em destaque",
+    "tags": ["saxofone"]
+  },
+  {
+    "id": "piano-e-teclas",
+    "title": "Piano e teclas",
+    "tags": ["piano"]
+  },
+  {
+    "id": "vozes-femininas",
+    "title": "Vozes femininas",
+    "tags": ["vocal feminino"]
+  },
+  {
+    "id": "rock-e-guitarra",
+    "title": "Rock e guitarra",
+    "tags": ["rock", "guitarra"]
+  },
+  {
+    "id": "ao-vivo",
+    "title": "Apresentações ao vivo",
+    "tags": ["ao vivo"]
+  },
+  {
+    "id": "cinema-negro",
+    "title": "Cinema negro",
+    "tags": ["cinema negro"]
+  },
+  {
+    "id": "blaxploitation",
+    "title": "Blaxploitation",
+    "tags": ["blaxploitation"]
+  },
+  {
+    "id": "dramas",
+    "title": "Dramas",
+    "tags": ["drama"]
+  },
+  {
+    "id": "documentarios",
+    "title": "Documentários",
+    "tags": ["documentário"]
+  },
+  {
+    "id": "direitos-civis",
+    "title": "Direitos civis",
+    "tags": ["direitos civis"]
+  },
+  {
+    "id": "panteras-negras",
+    "title": "Panteras Negras",
+    "tags": ["panteras negras"]
+  },
+  {
+    "id": "malcolm-x",
+    "title": "Malcolm X",
+    "tags": ["malcolm x"]
+  },
+  {
+    "id": "martin-luther-king",
+    "title": "Martin Luther King",
+    "tags": ["martin luther king"]
+  },
+  {
+    "id": "historia-e-arquivo",
+    "title": "História e arquivo",
+    "tags": ["história", "arquivo"]
+  },
+  {
+    "id": "mulheres-negras",
+    "title": "Mulheres negras",
+    "tags": ["mulheres negras"]
+  },
+  {
+    "id": "nasa-e-espaco",
+    "title": "NASA e espaço",
+    "tags": ["nasa", "espaço"]
+  },
+  {
+    "id": "ciencia-e-educacao",
+    "title": "Ciência e educação",
+    "tags": ["ciência", "educação"]
+  },
+  {
+    "id": "juneteenth",
+    "title": "Juneteenth e celebrações",
+    "tags": ["juneteenth", "celebração"]
+  },
+  {
+    "id": "retratos",
+    "title": "Retratos",
+    "tags": ["retrato"]
+  },
+  {
+    "id": "fotografia",
+    "title": "Fotografia",
+    "tags": ["fotografia"]
+  },
+  {
+    "id": "militar-e-guerra",
+    "title": "Militar e guerra",
+    "tags": ["militar", "guerra"]
+  },
+  {
+    "id": "autobiografias",
+    "title": "Autobiografias e memórias",
+    "tags": ["autobiografia", "memórias"]
+  },
+  {
+    "id": "romances",
+    "title": "Obras românticas",
+    "tags": ["romance"]
+  },
+  {
+    "id": "poesia",
+    "title": "Poesia",
+    "tags": ["poesia"]
+  },
+  {
+    "id": "ensaios-e-teoria",
+    "title": "Ensaios e teoria",
+    "tags": ["ensaio", "teoria"]
+  },
+  {
+    "id": "escravidao-e-liberdade",
+    "title": "Escravidão e liberdade",
+    "tags": ["escravidão", "liberdade"]
+  },
+  {
+    "id": "literatura",
+    "title": "Literatura",
+    "tags": ["literatura"]
+  },
+  {
+    "id": "classicos",
+    "title": "Clássicos",
+    "tags": ["clássico"]
+  },
+  {
+    "id": "so-audio",
+    "title": "Só áudio",
+    "types": ["audio"]
+  },
+  {
+    "id": "so-video",
+    "title": "Só vídeo",
+    "types": ["video"]
+  },
+  {
+    "id": "so-imagem",
+    "title": "Só imagem",
+    "types": ["image"]
+  },
+  {
+    "id": "so-texto",
+    "title": "Só texto",
+    "types": ["text"]
+  }
+]

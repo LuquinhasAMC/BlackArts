@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/jpeg" href="/logo.jpeg" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="BlackArts — museu digital da negritude: vídeos, músicas, fotografias, obras de arte, documentos e registros culturais da diáspora africana."
+    />
+    <meta name="theme-color" content="#241d17" />
+    <title>BlackArts — Museu Digital da Negritude</title>
+    <script>
+      // O app é exclusivamente em modo escuro: aplica a classe .dark antes
+      // do primeiro paint para evitar flash de tema claro.
+      document.documentElement.classList.add("dark")
+    </script>
+    <script>
+      // App estilo mobile: nunca restaurar a rolagem anterior em reloads.
+      // Sem isso, o navegador restaura a posição de rolagem da última
+      // visita antes mesmo do React montar, e a top bar da tela inicial
+      // abriria com cor sólida (a transparência só vale com a página no
+      // topo). Roda antes de qualquer restauração.
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual"
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

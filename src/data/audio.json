@@ -1,0 +1,317 @@
+[
+  {
+    "id": "WhatAWonderfulWorld_59",
+    "type": "audio",
+    "url": "https://archive.org/details/WhatAWonderfulWorld_59",
+    "title": "What a Wonderful World",
+    "creator": "Louis Armstrong",
+    "tags": ["jazz", "clássico", "vocal", "swing"]
+  },
+  {
+    "id": "IGotYou_119",
+    "type": "audio",
+    "url": "https://archive.org/details/IGotYou_119",
+    "title": "I Got You (I Feel Good)",
+    "creator": "James Brown",
+    "tags": ["funk", "soul", "clássico"]
+  },
+  {
+    "id": "ICantStopLovingYou",
+    "type": "audio",
+    "url": "https://archive.org/details/ICantStopLovingYou",
+    "title": "I Can't Stop Loving You",
+    "creator": "Ray Charles",
+    "tags": ["soul", "r&b", "clássico"]
+  },
+  {
+    "id": "ForOnceInMyLife_201",
+    "type": "audio",
+    "url": "https://archive.org/details/ForOnceInMyLife_201",
+    "title": "For Once in My Life",
+    "creator": "Stevie Wonder",
+    "tags": ["soul", "r&b", "clássico"]
+  },
+  {
+    "id": "1965-nina-simone-pastel-blues",
+    "type": "audio",
+    "url": "https://archive.org/details/1965-nina-simone-pastel-blues",
+    "title": "Pastel Blues",
+    "creator": "Nina Simone",
+    "year": "1965",
+    "tags": ["jazz", "blues", "vocal feminino", "piano"]
+  },
+  {
+    "id": "BessieSmithTunes",
+    "type": "audio",
+    "url": "https://archive.org/details/BessieSmithTunes",
+    "title": "Bessie Smith Tunes",
+    "creator": "Bessie Smith",
+    "tags": ["blues", "vocal feminino", "clássico"]
+  },
+  {
+    "id": "BillieHoliday1946-4-24EmbassyTheaterLosAngelesCa",
+    "type": "audio",
+    "url": "https://archive.org/details/BillieHoliday1946-4-24EmbassyTheaterLosAngelesCa",
+    "title": "Billie Holiday — Embassy Theater, Los Angeles",
+    "creator": "Billie Holiday",
+    "year": "1946",
+    "tags": ["jazz", "vocal feminino", "ao vivo"]
+  },
+  {
+    "id": "mahalia_jackson-abide_with_me-vinyl-1971",
+    "type": "audio",
+    "url": "https://archive.org/details/mahalia_jackson-abide_with_me-vinyl-1971",
+    "title": "Abide With Me",
+    "creator": "Mahalia Jackson",
+    "year": "1971",
+    "tags": ["gospel", "espiritual", "vocal feminino"]
+  },
+  {
+    "id": "EllaFitzgerald_552",
+    "type": "audio",
+    "url": "https://archive.org/details/EllaFitzgerald_552",
+    "title": "Ella Fitzgerald — Blues in the Night",
+    "creator": "Ella Fitzgerald",
+    "tags": ["jazz", "swing", "vocal feminino"]
+  },
+  {
+    "id": "09-sarah-vaughan-lover-man",
+    "type": "audio",
+    "url": "https://archive.org/details/09-sarah-vaughan-lover-man",
+    "title": "Sarah Vaughan — 1945-46, 48",
+    "creator": "Sarah Vaughan",
+    "tags": ["jazz", "vocal feminino", "bebop"]
+  },
+  {
+    "id": "DizzyGillespieCollection",
+    "type": "audio",
+    "url": "https://archive.org/details/DizzyGillespieCollection",
+    "title": "Dizzy Gillespie Collection",
+    "creator": "Dizzy Gillespie",
+    "tags": ["jazz", "bebop", "trompete"]
+  },
+  {
+    "id": "Duke_Ellington_at_Carnegie_Hall",
+    "type": "audio",
+    "url": "https://archive.org/details/Duke_Ellington_at_Carnegie_Hall",
+    "title": "Duke Ellington at Carnegie Hall",
+    "creator": "Duke Ellington",
+    "year": "1947",
+    "tags": ["jazz", "big band", "swing", "orquestra"]
+  },
+  {
+    "id": "78_2283-Dream-a-little-dream-of-me",
+    "type": "audio",
+    "url": "https://archive.org/details/78_2283-Dream-a-little-dream-of-me",
+    "title": "Dream a Little Dream of Me",
+    "creator": "Louis Armstrong & Ella Fitzgerald",
+    "tags": ["jazz", "swing", "dueto"]
+  },
+  {
+    "id": "TheBestOfJohnColtraneVol.2",
+    "type": "audio",
+    "url": "https://archive.org/details/TheBestOfJohnColtraneVol.2",
+    "title": "The Best of John Coltrane Vol. 2",
+    "creator": "John Coltrane",
+    "tags": ["jazz", "saxofone", "bebop"]
+  },
+  {
+    "id": "a-love-supreme-live-in-concert",
+    "type": "audio",
+    "url": "https://archive.org/details/a-love-supreme-live-in-concert",
+    "title": "A Love Supreme — Live in Concert",
+    "creator": "John Coltrane",
+    "tags": ["jazz", "saxofone", "espiritual", "ao vivo"]
+  },
+  {
+    "id": "JohnColtrane-BlueTrain-Vinyl24-bit",
+    "type": "audio",
+    "url": "https://archive.org/details/JohnColtrane-BlueTrain-Vinyl24-bit",
+    "title": "Blue Train",
+    "creator": "John Coltrane",
+    "tags": ["jazz", "saxofone", "bebop", "clássico"]
+  },
+  {
+    "id": "03-miles-davis-john-coltrane-konserthuset-stockholm-march-22-1960",
+    "type": "audio",
+    "url": "https://archive.org/details/03-miles-davis-john-coltrane-konserthuset-stockholm-march-22-1960",
+    "title": "Miles Davis & John Coltrane — Live in Stockholm",
+    "creator": "Miles Davis, John Coltrane",
+    "year": "1960",
+    "tags": ["jazz", "bebop", "trompete", "saxofone", "ao vivo"]
+  },
+  {
+    "id": "monks-music",
+    "type": "audio",
+    "url": "https://archive.org/details/monks-music",
+    "title": "Monk's Music",
+    "creator": "Thelonious Monk",
+    "tags": ["jazz", "piano", "bebop"]
+  },
+  {
+    "id": "solo-monk",
+    "type": "audio",
+    "url": "https://archive.org/details/solo-monk",
+    "title": "Solo Monk",
+    "creator": "Thelonious Monk",
+    "tags": ["jazz", "piano", "solo"]
+  },
+  {
+    "id": "the-art-of-charlie-parker-vol.-2-jazztone-j-1017",
+    "type": "audio",
+    "url": "https://archive.org/details/the-art-of-charlie-parker-vol.-2-jazztone-j-1017",
+    "title": "The Art of Charlie Parker Vol. 2",
+    "creator": "Charlie Parker",
+    "year": "1946",
+    "tags": ["jazz", "saxofone", "bebop"]
+  },
+  {
+    "id": "jimi_hendrix-in_the_beginning-vinyl-1973",
+    "type": "audio",
+    "url": "https://archive.org/details/jimi_hendrix-in_the_beginning-vinyl-1973",
+    "title": "In the Beginning",
+    "creator": "Jimi Hendrix",
+    "year": "1973",
+    "tags": ["rock", "guitarra", "psicodelia"]
+  },
+  {
+    "id": "hendrix-national-anthem",
+    "type": "audio",
+    "url": "https://archive.org/details/hendrix-national-anthem",
+    "title": "Hendrix — National Anthem",
+    "creator": "Jimi Hendrix",
+    "year": "1969",
+    "tags": ["rock", "guitarra", "ao vivo"]
+  },
+  {
+    "id": "james-brown-get-up-offa-that-thing-boston-1977",
+    "type": "audio",
+    "url": "https://archive.org/details/james-brown-get-up-offa-that-thing-boston-1977",
+    "title": "James Brown — Get Up Offa That Thing, Boston",
+    "creator": "James Brown",
+    "year": "1977",
+    "tags": ["funk", "soul", "ao vivo"]
+  },
+  {
+    "id": "NeverGetOutOfTheseBluesAliveside1",
+    "type": "audio",
+    "url": "https://archive.org/details/NeverGetOutOfTheseBluesAliveside1",
+    "title": "Never Get Out of These Blues Alive",
+    "creator": "John Lee Hooker",
+    "year": "1972",
+    "tags": ["blues", "guitarra"]
+  },
+  {
+    "id": "RedemptionSong_158",
+    "type": "audio",
+    "url": "https://archive.org/details/RedemptionSong_158",
+    "title": "Redemption Song",
+    "creator": "Bob Marley and The Wailers",
+    "tags": ["reggae", "liberdade", "clássico"]
+  },
+  {
+    "id": "OtisRedding-sittinonTheDockOfTheBaymonsieurCortezBootlegClub",
+    "type": "audio",
+    "url": "https://archive.org/details/OtisRedding-sittinonTheDockOfTheBaymonsieurCortezBootlegClub",
+    "title": "(Sittin' on) The Dock of the Bay",
+    "creator": "Otis Redding",
+    "tags": ["soul", "r&b", "clássico"]
+  },
+  {
+    "id": "waters-muddy-1947-64-mc-kinley-morganfield-side-b-archive-05",
+    "type": "audio",
+    "url": "https://archive.org/details/waters-muddy-1947-64-mc-kinley-morganfield-side-b-archive-05",
+    "title": "Muddy Waters LP (1947–64)",
+    "creator": "Muddy Waters",
+    "year": "1947",
+    "tags": ["blues", "guitarra", "clássico"]
+  },
+  {
+    "id": "lp_aint-that-good-news_sam-cooke_item",
+    "type": "audio",
+    "url": "https://archive.org/details/lp_aint-that-good-news_sam-cooke_item",
+    "title": "Ain't That Good News",
+    "creator": "Sam Cooke",
+    "year": "1964",
+    "tags": ["soul", "r&b", "clássico"]
+  },
+  {
+    "id": "lp_still-bill_bill_withers",
+    "type": "audio",
+    "url": "https://archive.org/details/lp_still-bill_bill_withers",
+    "title": "Still Bill",
+    "creator": "Bill Withers",
+    "year": "1972",
+    "tags": ["soul", "r&b", "clássico"]
+  },
+  {
+    "id": "MiriamMakeba_604",
+    "type": "audio",
+    "url": "https://archive.org/details/MiriamMakeba_604",
+    "title": "Miriam Makeba",
+    "creator": "Miriam Makeba",
+    "tags": ["afrobeat", "vocal feminino", "música africana"]
+  },
+  {
+    "id": "lp_this-girls-in-love-with-you_aretha-franklin_item",
+    "type": "audio",
+    "url": "https://archive.org/details/lp_this-girls-in-love-with-you_aretha-franklin_item",
+    "title": "This Girl's in Love with You",
+    "creator": "Aretha Franklin",
+    "year": "1970",
+    "tags": ["soul", "r&b", "vocal feminino", "clássico"]
+  },
+  {
+    "id": "duke-ellington-soul-call",
+    "type": "audio",
+    "url": "https://archive.org/details/duke-ellington-soul-call",
+    "title": "Soul Call",
+    "creator": "Duke Ellington",
+    "year": "1967",
+    "tags": ["jazz", "big band", "swing", "ao vivo"]
+  },
+  {
+    "id": "TheThrillIsGone_201509",
+    "type": "audio",
+    "url": "https://archive.org/details/TheThrillIsGone_201509",
+    "title": "The Thrill Is Gone",
+    "creator": "B.B. King",
+    "tags": ["blues", "guitarra", "clássico"]
+  },
+  {
+    "id": "lp_live-at-the-copa_the-temptations",
+    "type": "audio",
+    "url": "https://archive.org/details/lp_live-at-the-copa_the-temptations",
+    "title": "Live at the Copa",
+    "creator": "The Temptations",
+    "year": "1967",
+    "tags": ["soul", "r&b", "ao vivo", "clássico"]
+  },
+  {
+    "id": "bpl-littlerichard-1987",
+    "type": "audio",
+    "url": "https://archive.org/details/bpl-littlerichard-1987",
+    "title": "Little Richard — Live (1987)",
+    "creator": "Little Richard",
+    "year": "1987",
+    "tags": ["rock", "piano", "ao vivo", "clássico"]
+  },
+  {
+    "id": "Maybellene",
+    "type": "audio",
+    "url": "https://archive.org/details/Maybellene",
+    "title": "Maybellene",
+    "creator": "Chuck Berry",
+    "year": "1955",
+    "tags": ["rock", "guitarra", "clássico"]
+  },
+  {
+    "id": "1975-fela-kuti-africa-70-expensive-shit",
+    "type": "audio",
+    "url": "https://archive.org/details/1975-fela-kuti-africa-70-expensive-shit",
+    "title": "Expensive Shit",
+    "creator": "Fela Kuti & Africa 70",
+    "year": "1975",
+    "tags": ["afrobeat", "funk", "clássico"]
+  }
+]
