@@ -246,7 +246,23 @@ export function pickAudioFile(
   )
 }
 
-/** Lista de arquivos de áudio ordenada por preferência de formato. */
+/**
+ * Chave de conteúdo de uma faixa: remove sufixos de derivados do
+ * Internet Archive (`_64kb`, `_vbr`, `_sample`…) para não listar a
+ * mesma faixa várias vezes em formatos diferentes.
+ */
+function audioContentKey(name: string): string {
+  return baseFileName(name)
+    .replace(/_(64|128|192|256|320)kb$/, "")
+    .replace(/_vbr$/, "")
+    .replace(/_sample$/, "")
+    .replace(/_spectrogram$/, "")
+}
+
+/**
+ * Lista de faixas de áudio, uma por conteúdo (derivados da mesma faixa
+ * são agrupados), ordenada por preferência de formato.
+ */
 export function audioFilesByPreference(
   files: ArchiveFile[] | undefined
 ): ArchiveFile[] {
@@ -262,12 +278,22 @@ export function audioFilesByPreference(
     "opus",
     "webm",
   ]
-  return [...audio].sort((a, b) => {
+  const sorted = [...audio].sort((a, b) => {
     const pa = priority.indexOf(getFileExtension(a.name))
     const pb = priority.indexOf(getFileExtension(b.name))
     return (
       (pa === -1 ? priority.length : pa) - (pb === -1 ? priority.length : pb)
     )
+  })
+
+  const seen = new Set<string>()
+  return sorted.filter((file) => {
+    const key = audioContentKey(file.name)
+    if (seen.has(key)) {
+      return false
+    }
+    seen.add(key)
+    return true
   })
 }
 
@@ -295,6 +321,68 @@ export function pickVideoFile(
     video.find((file) => hasExtension(file.name, ["mp4", "webm", "m4v"])) ??
     video[0]
   )
+}
+
+/** Nome do arquivo sem extensão — usado para agrupar derivados. */
+function baseFileName(name: string): string {
+  const clean = name.split("?")[0] ?? name
+  const lastDot = clean.lastIndexOf(".")
+  return (lastDot > 0 ? clean.slice(0, lastDot) : clean).toLowerCase()
+}
+
+/**
+ * Lista de vídeos do item, um por conteúdo (derivados do mesmo vídeo em
+ * outros formatos são agrupados), com o arquivo principal primeiro.
+ */
+export function videoFilesByPreference(
+  files: ArchiveFile[] | undefined
+): ArchiveFile[] {
+  const { video } = groupFilesByType(files)
+  if (video.length === 0) {
+    return []
+  }
+
+  const priority = ["mp4", "m4v", "webm", "ogv", "mov"]
+  const score = (file: ArchiveFile) => {
+    const index = priority.indexOf(getFileExtension(file.name))
+    return index === -1 ? priority.length : index
+  }
+
+  const primary = pickVideoFile(files)
+  const sorted = [...video].sort((a, b) => score(a) - score(b))
+  const ordered = primary
+    ? [primary, ...sorted.filter((file) => file.name !== primary.name)]
+    : sorted
+
+  const seen = new Set<string>()
+  return ordered.filter((file) => {
+    const base = baseFileName(file.name)
+    if (seen.has(base)) {
+      return false
+    }
+    seen.add(base)
+    return true
+  })
+}
+
+/**
+ * Lista de imagens do item (sem as miniaturas geradas pelo Archive),
+ * em ordem de preferência de formato.
+ */
+export function imageFilesByPreference(
+  files: ArchiveFile[] | undefined
+): ArchiveFile[] {
+  const { image } = groupFilesByType(files)
+  const real = image.filter((file) => !file.name.includes("__ia_thumb"))
+  const pool = real.length > 0 ? real : image
+
+  const priority = ["jpg", "jpeg", "png", "webp", "gif", "bmp", "tif", "tiff"]
+  const score = (file: ArchiveFile) => {
+    const index = priority.indexOf(getFileExtension(file.name))
+    return index === -1 ? priority.length : index
+  }
+
+  return [...pool].sort((a, b) => score(a) - score(b))
 }
 
 /** Escolhe a melhor imagem para exibição (exclui thumbnails geradas). */

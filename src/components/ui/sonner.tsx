@@ -10,6 +10,13 @@ import {
   Loader2Icon,
 } from "lucide-react"
 
+/**
+ * Altura da status bar/notch. O Capacitor injeta `--safe-area-inset-top`
+ * (edge-to-edge); os fallbacks cobrem iOS e o navegador no desktop.
+ */
+const SAFE_AREA_TOP =
+  "var(--safe-area-inset-top, env(safe-area-inset-top, 0px))"
+
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme()
 
@@ -37,6 +44,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
           toast: "cn-toast",
         },
       }}
+      // Sem a safe area o toast nasce embaixo da status bar no app. Os
+      // valores base são os padrões do sonner (24px no desktop, 16px no
+      // celular), só somados ao inset do topo.
+      offset={{ top: `calc(24px + ${SAFE_AREA_TOP})` }}
+      mobileOffset={{ top: `calc(16px + ${SAFE_AREA_TOP})` }}
       {...props}
     />
   )

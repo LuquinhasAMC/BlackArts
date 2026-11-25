@@ -1,4 +1,5 @@
 import { CatalogCard } from "@/components/catalog/catalog-card"
+import { ScrollRow } from "@/components/home/scroll-row"
 import { curatedToCatalogItem, type CuratedItem } from "@/data/curated"
 
 interface ContentRowProps {
@@ -20,7 +21,7 @@ export function ContentRow({ title, items }: ContentRowProps) {
       <h2 className="px-1 text-lg font-bold tracking-tight sm:text-xl">
         {title}
       </h2>
-      <div className="flex flex-nowrap gap-3 overflow-x-auto pb-2 snap-x [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <ScrollRow ariaLabel={title} gap={12} className="gap-3 pb-2">
         {items.map((item) => (
           <div
             key={item.id}
@@ -29,7 +30,7 @@ export function ContentRow({ title, items }: ContentRowProps) {
             <CatalogCard item={curatedToCatalogItem(item)} />
           </div>
         ))}
-      </div>
+      </ScrollRow>
     </section>
   )
 }

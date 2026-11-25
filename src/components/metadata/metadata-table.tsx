@@ -1,11 +1,9 @@
 import type { ReactNode } from "react"
 import { ExternalLink } from "lucide-react"
 
+import { Description } from "@/components/metadata/description"
 import { Badge } from "@/components/ui/badge"
-import { sanitizeHtml } from "@/lib/html"
-import { firstString } from "@/lib/archive-api"
 import { buildDetailsUrl } from "@/lib/archive-api"
-import { mediaTypeLabel } from "@/lib/media"
 import type { ArchiveFile } from "@/types/archive"
 
 interface MetadataTableProps {
@@ -55,7 +53,14 @@ interface Row {
   value: ReactNode
 }
 
-/** Tabela organizada de metadados de um item. */
+/** Rótulo de seção, discreto como no restante do app. */
+function SectionLabel({ children }: { children: ReactNode }) {
+  return (
+    <h2 className="text-xs font-semibold text-muted-foreground">{children}</h2>
+  )
+}
+
+/** Metadados de um item: descrição em card próprio e detalhes em lista. */
 export function MetadataTable({
   identifier,
   metadata,
@@ -73,37 +78,23 @@ export function MetadataTable({
       .sort(),
   ]
 
+  // A descrição sai da lista: fica em um card com texto expandível.
+  const description = formatMetadataValue(byKey.get("description"))
+
   const rows: Row[] = []
   for (const key of sortedKeys) {
+    // Descrição fica em card próprio e o tipo já aparece no título.
+    if (key === "description" || key === "mediatype") {
+      continue
+    }
     const value = formatMetadataValue(byKey.get(key))
     if (!value) {
       continue
     }
-    const label = key.charAt(0).toUpperCase() + key.slice(1)
-    // A descrição da API vem em HTML: formata com a mesma sanitização
-    // usada no player de vídeo, para não exibir as tags cruas.
-    const rendered =
-      key === "description" ? (
-        <div
-          className="[&_a]:text-primary [&_a]:underline-offset-4 [&_a]:hover:underline [&_b]:text-foreground [&_li]:my-0.5 [&_ol]:my-2 [&_p]:my-2 [&_strong]:text-foreground [&_ul]:my-2"
-          dangerouslySetInnerHTML={{ __html: sanitizeHtml(value) }}
-        />
-      ) : (
-        value
-      )
-    rows.push({ label, value: rendered })
-  }
-
-  // Rótulo legível do tipo de mídia.
-  const rawMediatype = firstString(byKey.get("mediatype"))
-  if (rawMediatype) {
-    const row = rows.find((entry) => entry.label === "Mediatype")
-    if (row) {
-      row.label = "Tipo"
-      row.value = mediaTypeLabel(rawMediatype)
-    } else {
-      rows.unshift({ label: "Tipo", value: mediaTypeLabel(rawMediatype) })
-    }
+    rows.push({
+      label: key.charAt(0).toUpperCase() + key.slice(1),
+      value,
+    })
   }
 
   if (Array.isArray(tags) && tags.length > 0) {
@@ -122,7 +113,10 @@ export function MetadataTable({
   }
 
   if (Array.isArray(files) && files.length > 0) {
-    rows.push({ label: "Arquivos", value: `${files.length} arquivo(s)` })
+    rows.push({
+      label: "Arquivos",
+      value: `${files.length} ${files.length === 1 ? "arquivo" : "arquivos"}`,
+    })
   }
 
   rows.push({
@@ -132,7 +126,7 @@ export function MetadataTable({
         href={buildDetailsUrl(identifier)}
         target="_blank"
         rel="noreferrer"
-        className="inline-flex items-center gap-1 text-primary underline-offset-4 hover:underline"
+        className="inline-flex items-center gap-1 font-medium text-primary underline-offset-4 hover:underline"
       >
         Internet Archive
         <ExternalLink className="size-3.5" aria-hidden />
@@ -140,25 +134,37 @@ export function MetadataTable({
     ),
   })
 
-  // Sem limitador de altura: a página já rola e a tabela cresce com o
-  // conteúdo (o antigo `max-h` cortava descrições longas).
   return (
-    <div className="rounded-4xl border border-border bg-card">
-      <dl className="divide-y divide-border/70">
-        {rows.map((row) => (
-          <div
-            key={row.label}
-            className="grid grid-cols-1 gap-1 px-4 py-3 sm:grid-cols-[minmax(9rem,12rem)_1fr] sm:gap-4"
-          >
-            <dt className="min-w-0 text-xs font-medium tracking-wide text-muted-foreground uppercase">
-              {row.label}
-            </dt>
-            <dd className="min-w-0 text-sm [overflow-wrap:anywhere] break-words">
-              {row.value}
-            </dd>
+    <div className="flex flex-col gap-4">
+      {description && (
+        <section className="flex flex-col gap-2">
+          <SectionLabel>Descrição</SectionLabel>
+          <div className="rounded-3xl bg-card p-4 ring-1 ring-foreground/10">
+            <Description description={description} />
           </div>
-        ))}
-      </dl>
+        </section>
+      )}
+
+      <section className="flex flex-col gap-2">
+        <SectionLabel>Detalhes</SectionLabel>
+        <div className="overflow-hidden rounded-3xl bg-card ring-1 ring-foreground/10">
+          <dl className="divide-y divide-border/60">
+            {rows.map((row) => (
+              <div
+                key={row.label}
+                className="grid grid-cols-1 gap-0.5 px-4 py-3.5 sm:grid-cols-[minmax(8rem,10rem)_1fr] sm:items-baseline sm:gap-4"
+              >
+                <dt className="min-w-0 text-xs font-semibold text-muted-foreground">
+                  {row.label}
+                </dt>
+                <dd className="min-w-0 text-sm leading-relaxed font-medium [overflow-wrap:anywhere] break-words">
+                  {row.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
     </div>
   )
 }

@@ -23,6 +23,9 @@
   --border: oklch(0.922 0.005 34.3);
   --input: oklch(0.922 0.005 34.3);
   --ring: oklch(0.714 0.014 41.2);
+  /* Polegar da barra de rolagem (translúcido sobre o fundo). */
+  --scrollbar-thumb: oklch(0.147 0.004 49.3 / 22%);
+  --scrollbar-thumb-hover: oklch(0.147 0.004 49.3 / 38%);
   --chart-1: oklch(0.868 0.007 39.5);
   --chart-2: oklch(0.547 0.021 43.1);
   --chart-3: oklch(0.438 0.017 39.3);
@@ -58,6 +61,8 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.547 0.021 43.1);
+  --scrollbar-thumb: oklch(0.986 0.002 67.8 / 22%);
+  --scrollbar-thumb-hover: oklch(0.986 0.002 67.8 / 38%);
   --chart-1: oklch(0.868 0.007 39.5);
   --chart-2: oklch(0.547 0.021 43.1);
   --chart-3: oklch(0.438 0.017 39.3);
@@ -114,6 +119,13 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* Durante a pinça o Chromium re-rasteriza a camada composta a cada frame (para
+   não borrar) e no WebView do app isso custa muito mais que no navegador. O
+   texto é a parte cara: fica invisível só durante o gesto e volta ao soltar. */
+[data-pinching="true"] .textLayer {
+  visibility: hidden;
+}
+
 /* Safe areas do Capacitor (edge-to-edge): usa a variável injetada pelo
    Capacitor 8.3+ e cai para env() (iOS/desktop) e depois 0. */
 @utility pt-safe {
@@ -141,11 +153,88 @@
     user-select: none;
   }
 
+  /* Capacitor (Android): sem o efeito de "estilingue" ao arrastar além do
+     fim da rolagem — a interface não parece mais "solta" na borda. Vale
+     para a página e para o contêiner rolável principal do app. */
+  html,
+  body,
+  main {
+    overscroll-behavior: none;
+  }
+
+  /* Barra de rolagem: fina, arredondada e na cor do tema. No Chromium
+     (Chrome, Vivaldi e o WebView do app) valem os pseudo-elementos; o
+     Firefox só entende as propriedades padrão, então elas ficam num bloco
+     à parte para não sobrescrever a barra customizada. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Escondida por padrão: aparece só enquanto algo rola (classe
+     `is-scrolling`) ou com o ponteiro sobre ela. */
+  ::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 9999px;
+    background-color: transparent;
+    background-clip: content-box;
+    transition: background-color 200ms ease;
+  }
+
+  .is-scrolling::-webkit-scrollbar-thumb,
+  .is-scrolling ::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* No celular a barra fica bem mais estreita (some quase por completo). */
+  @media (max-width: 640px) {
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-width: 0;
+      background-color: transparent;
+    }
+
+    .is-scrolling::-webkit-scrollbar-thumb,
+    .is-scrolling ::-webkit-scrollbar-thumb {
+      background-color: var(--scrollbar-thumb);
+    }
+  }
+
+  @supports not selector(::-webkit-scrollbar) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: transparent transparent;
+    }
+
+    .is-scrolling *,
+    .is-scrolling:not(*) {
+      scrollbar-color: var(--scrollbar-thumb) transparent;
+    }
+  }
+
   /* Campos de texto e conteúdo de leitura continuam selecionáveis. */
   input,
   textarea,
   [contenteditable="true"],
-  .select-text {
+  .select-text,
+  .textLayer,
+  .textLayer * {
     -webkit-user-select: text;
     user-select: text;
   }
@@ -153,4 +242,39 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
+}
+
+/* Camada de texto do pdf.js (documentos): spans transparentes sobre o
+   canvas na posição exata das letras, para selecionar e copiar o texto. */
+.textLayer {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+  line-height: 1;
+  text-align: initial;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+  transform-origin: 0 0;
+  z-index: 1;
+  /* Só as letras capturam o ponteiro; o resto deixa o arraste do
+     documento funcionar. */
+  pointer-events: none;
+}
+
+.textLayer :is(span, br) {
+  position: absolute;
+  color: transparent;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+  pointer-events: auto;
+}
+
+.textLayer ::selection {
+  background: color-mix(in srgb, AccentColor, transparent 75%);
+}
+
+.textLayer br::selection {
+  background: transparent;
 }

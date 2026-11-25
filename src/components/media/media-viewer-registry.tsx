@@ -1,4 +1,4 @@
-import type { ComponentType, RefObject } from "react"
+import type { ComponentType, ReactNode, RefObject } from "react"
 
 import { resolveMediaType, type MediaType } from "@/lib/media"
 import type { ArchiveFile } from "@/types/archive"
@@ -18,6 +18,18 @@ export interface MediaViewerProps {
   type?: MediaType
   /** Nível de zoom (imagens). */
   zoom?: number
+  /** Imagem selecionada (itens com mais de uma imagem). */
+  imageIndex?: number
+  /** Vídeo selecionado (itens com mais de um vídeo). */
+  videoIndex?: number
+  /** Faixa de áudio selecionada (itens com mais de um áudio). */
+  audioIndex?: number
+  onAudioIndexChange?: (index: number) => void
+  /** Título/autores do item (player de áudio). */
+  title?: string
+  creator?: string | string[]
+  /** Ações exibidas dentro do player (player de áudio). */
+  actions?: ReactNode
   /** Atualiza o zoom (imagens) — usado por gestos no visualizador. */
   onZoomChange?: (zoom: number) => void
   /** Referência do contêiner rolável de texto (controles de navegação). */
@@ -26,6 +38,13 @@ export interface MediaViewerProps {
   text?: string | null
   textLoading?: boolean
   textFailed?: boolean
+  onVideoTimeUpdate?: (time: number) => void
+  onVideoDurationChange?: (duration: number) => void
+  onVideoReady?: () => void
+  /** Retoma a posição salva (áudio). */
+  resumeTime?: number
+  /** Retoma a posição salva (vídeo). */
+  initialTime?: number
 }
 
 type ViewerComponent = ComponentType<MediaViewerProps>

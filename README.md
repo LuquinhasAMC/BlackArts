@@ -58,20 +58,9 @@ Comportamentos nativos configurados:
   com `@capacitor/assets`.
 - **Tema nativo**: janela e barras em escuro, com acento âmbar do BlackArts.
 
-## Setup inicial
-
-O projeto foi iniciado com o preset do shadcn/ui (base Radix, estilo
-`radix-luma`, base color `taupe`):
-
-```bash
-npx shadcn@latest init --preset b7W7uXJuE --base radix --template vite
-npm install react-router-dom @tanstack/react-query lucide-react clsx tailwind-merge
-npx shadcn@latest add button input card badge tabs skeleton dialog select scroll-area separator tooltip sonner dropdown-menu
-```
-
 ## Estrutura
 
-```
+```s
 src/
   app/                  # router e providers globais
     router.tsx
@@ -149,3 +138,5 @@ src/
   para abrir o item no Internet Archive. Nesses casos, usar VPN ou outra rede
   costuma resolver.
 - Favoritos são locais ao dispositivo/navegador (não há conta de usuário).
+- Esta versão foca especificamente na cultura negra brasileira e artistas
+  brasileiros do acervo público do Internet Archive.

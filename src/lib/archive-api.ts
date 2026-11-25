@@ -189,13 +189,29 @@ export function buildFileUrl(identifier: string, fileName: string): string {
   return `${ARCHIVE.baseUrl}/download/${encodeURIComponent(identifier)}/${encodeURIComponent(fileName)}`
 }
 
+/**
+ * URL de um arquivo servida pelo endpoint CORS do Internet Archive.
+ *
+ * Os nós de armazenamento do Archive (`dn*.archive.org`, para onde o
+ * `/download/` redireciona) não enviam cabeçalhos CORS, então ler os
+ * bytes via `fetch` é bloqueado pelo navegador/WebView. O `/cors/`
+ * responde com `Access-Control-Allow-Origin`, permitindo carregar PDFs
+ * (pdf.js) e textos diretamente no cliente.
+ */
+export function buildCorsFileUrl(
+  identifier: string,
+  fileName: string
+): string {
+  return `${ARCHIVE.baseUrl}/cors/${encodeURIComponent(identifier)}/${encodeURIComponent(fileName)}`
+}
+
 /** Busca o conteúdo de um arquivo de texto puro de um item. */
 export async function fetchTextFile(
   identifier: string,
   fileName: string,
   signal?: AbortSignal
 ): Promise<string> {
-  const url = buildFileUrl(identifier, fileName)
+  const url = buildCorsFileUrl(identifier, fileName)
   const controller = new AbortController()
   const timeoutId = setTimeout(
     () => controller.abort(new Error("timeout")),

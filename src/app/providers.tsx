@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
+import { AudioPlaybackProvider } from "@/components/media/audio-playback"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { Toaster } from "@/components/ui/sonner"
 import { ARCHIVE } from "@/config/archive"
@@ -23,12 +24,14 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <FavoritesProvider>
-        <TooltipProvider delayDuration={300}>
-          {children}
-          <Toaster position="top-center" richColors closeButton />
-        </TooltipProvider>
-      </FavoritesProvider>
+      <AudioPlaybackProvider>
+        <FavoritesProvider>
+          <TooltipProvider delayDuration={300}>
+            {children}
+            <Toaster position="top-center" richColors closeButton />
+          </TooltipProvider>
+        </FavoritesProvider>
+      </AudioPlaybackProvider>
     </QueryClientProvider>
   )
 }

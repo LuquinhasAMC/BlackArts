@@ -44,6 +44,28 @@ function stripDangerousAttributes(node: Element): void {
 }
 
 /**
+ * Converte um HTML em texto puro — usado em resumos curtos (ex.: a
+ * descrição que aparece no card de destaque), onde as tags não cabem.
+ */
+export function htmlToText(input: string | undefined | null): string {
+  if (!input) {
+    return ""
+  }
+  return input
+    .replace(/<\/(p|div|li|h[1-6]|tr)>/gi, " ")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]*>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim()
+}
+
+/**
  * Sanitiza um HTML retornado pelo Internet Archive: remove tags e
  * atributos perigosos e devolve o HTML limpo para renderização.
  * Se o texto não contiver tags HTML, devolve-o com quebras de linha

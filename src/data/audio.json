@@ -1,317 +1,656 @@
 [
   {
-    "id": "WhatAWonderfulWorld_59",
+    "id": "01CartolaOMundoEUmMoinho",
     "type": "audio",
-    "url": "https://archive.org/details/WhatAWonderfulWorld_59",
-    "title": "What a Wonderful World",
-    "creator": "Louis Armstrong",
-    "tags": ["jazz", "clássico", "vocal", "swing"]
+    "url": "https://archive.org/details/01CartolaOMundoEUmMoinho",
+    "title": "O Mundo É Um Moinho",
+    "creator": "Cartola",
+    "year": "1976",
+    "tags": ["samba", "música negra"]
   },
   {
-    "id": "IGotYou_119",
+    "id": "1974-cartola",
     "type": "audio",
-    "url": "https://archive.org/details/IGotYou_119",
-    "title": "I Got You (I Feel Good)",
-    "creator": "James Brown",
-    "tags": ["funk", "soul", "clássico"]
+    "url": "https://archive.org/details/1974-cartola",
+    "title": "Cartola (1974)",
+    "creator": "Cartola",
+    "year": "1974",
+    "tags": ["samba", "música negra"]
   },
   {
-    "id": "ICantStopLovingYou",
+    "id": "1976-cartola-ii",
     "type": "audio",
-    "url": "https://archive.org/details/ICantStopLovingYou",
-    "title": "I Can't Stop Loving You",
-    "creator": "Ray Charles",
-    "tags": ["soul", "r&b", "clássico"]
+    "url": "https://archive.org/details/1976-cartola-ii",
+    "title": "Cartola II",
+    "creator": "Cartola",
+    "year": "1976",
+    "tags": ["samba", "música negra"]
   },
   {
-    "id": "ForOnceInMyLife_201",
+    "id": "vozes-de-cor-dona-ivone-lara",
     "type": "audio",
-    "url": "https://archive.org/details/ForOnceInMyLife_201",
-    "title": "For Once in My Life",
-    "creator": "Stevie Wonder",
-    "tags": ["soul", "r&b", "clássico"]
+    "url": "https://archive.org/details/vozes-de-cor-dona-ivone-lara",
+    "title": "Vozes de Cor: Dona Ivone Lara",
+    "creator": "Dona Ivone Lara",
+    "year": "2020",
+    "tags": ["samba", "música negra", "mulher negra"]
   },
   {
-    "id": "1965-nina-simone-pastel-blues",
+    "id": "vozes_de_cor_clementina_de_jesus",
     "type": "audio",
-    "url": "https://archive.org/details/1965-nina-simone-pastel-blues",
-    "title": "Pastel Blues",
-    "creator": "Nina Simone",
-    "year": "1965",
-    "tags": ["jazz", "blues", "vocal feminino", "piano"]
+    "url": "https://archive.org/details/vozes_de_cor_clementina_de_jesus",
+    "title": "Vozes de Cor: Clementina de Jesus",
+    "creator": "Clementina de Jesus",
+    "year": "2020",
+    "tags": ["samba", "música negra", "mulher negra"]
   },
   {
-    "id": "BessieSmithTunes",
+    "id": "vozes_de_cor_jovelina_perola_negra",
     "type": "audio",
-    "url": "https://archive.org/details/BessieSmithTunes",
-    "title": "Bessie Smith Tunes",
-    "creator": "Bessie Smith",
-    "tags": ["blues", "vocal feminino", "clássico"]
+    "url": "https://archive.org/details/vozes_de_cor_jovelina_perola_negra",
+    "title": "Vozes de Cor: Jovelina Pérola Negra",
+    "creator": "Jovelina Pérola Negra",
+    "year": "2020",
+    "tags": ["samba", "música negra", "mulher negra"]
   },
   {
-    "id": "BillieHoliday1946-4-24EmbassyTheaterLosAngelesCa",
+    "id": "vozesdecor_alcione",
     "type": "audio",
-    "url": "https://archive.org/details/BillieHoliday1946-4-24EmbassyTheaterLosAngelesCa",
-    "title": "Billie Holiday — Embassy Theater, Los Angeles",
-    "creator": "Billie Holiday",
-    "year": "1946",
-    "tags": ["jazz", "vocal feminino", "ao vivo"]
+    "url": "https://archive.org/details/vozesdecor_alcione",
+    "title": "Vozes de Cor: Alcione",
+    "creator": "Alcione",
+    "year": "2021",
+    "tags": ["samba", "música negra", "mulher negra"]
   },
   {
-    "id": "mahalia_jackson-abide_with_me-vinyl-1971",
+    "id": "1974-martinho-da-vila-canta-canta-minha-gente",
     "type": "audio",
-    "url": "https://archive.org/details/mahalia_jackson-abide_with_me-vinyl-1971",
-    "title": "Abide With Me",
-    "creator": "Mahalia Jackson",
-    "year": "1971",
-    "tags": ["gospel", "espiritual", "vocal feminino"]
+    "url": "https://archive.org/details/1974-martinho-da-vila-canta-canta-minha-gente",
+    "title": "Canta Canta, Minha Gente",
+    "creator": "Martinho da Vila",
+    "year": "1974",
+    "tags": ["samba", "música negra"]
   },
   {
-    "id": "EllaFitzgerald_552",
+    "id": "1977-nelson-cavaquinho-candeia-guilherme-de-brito-elton-medeiros-quatro-grandes-do-samba",
     "type": "audio",
-    "url": "https://archive.org/details/EllaFitzgerald_552",
-    "title": "Ella Fitzgerald — Blues in the Night",
-    "creator": "Ella Fitzgerald",
-    "tags": ["jazz", "swing", "vocal feminino"]
-  },
-  {
-    "id": "09-sarah-vaughan-lover-man",
-    "type": "audio",
-    "url": "https://archive.org/details/09-sarah-vaughan-lover-man",
-    "title": "Sarah Vaughan — 1945-46, 48",
-    "creator": "Sarah Vaughan",
-    "tags": ["jazz", "vocal feminino", "bebop"]
-  },
-  {
-    "id": "DizzyGillespieCollection",
-    "type": "audio",
-    "url": "https://archive.org/details/DizzyGillespieCollection",
-    "title": "Dizzy Gillespie Collection",
-    "creator": "Dizzy Gillespie",
-    "tags": ["jazz", "bebop", "trompete"]
-  },
-  {
-    "id": "Duke_Ellington_at_Carnegie_Hall",
-    "type": "audio",
-    "url": "https://archive.org/details/Duke_Ellington_at_Carnegie_Hall",
-    "title": "Duke Ellington at Carnegie Hall",
-    "creator": "Duke Ellington",
-    "year": "1947",
-    "tags": ["jazz", "big band", "swing", "orquestra"]
-  },
-  {
-    "id": "78_2283-Dream-a-little-dream-of-me",
-    "type": "audio",
-    "url": "https://archive.org/details/78_2283-Dream-a-little-dream-of-me",
-    "title": "Dream a Little Dream of Me",
-    "creator": "Louis Armstrong & Ella Fitzgerald",
-    "tags": ["jazz", "swing", "dueto"]
-  },
-  {
-    "id": "TheBestOfJohnColtraneVol.2",
-    "type": "audio",
-    "url": "https://archive.org/details/TheBestOfJohnColtraneVol.2",
-    "title": "The Best of John Coltrane Vol. 2",
-    "creator": "John Coltrane",
-    "tags": ["jazz", "saxofone", "bebop"]
-  },
-  {
-    "id": "a-love-supreme-live-in-concert",
-    "type": "audio",
-    "url": "https://archive.org/details/a-love-supreme-live-in-concert",
-    "title": "A Love Supreme — Live in Concert",
-    "creator": "John Coltrane",
-    "tags": ["jazz", "saxofone", "espiritual", "ao vivo"]
-  },
-  {
-    "id": "JohnColtrane-BlueTrain-Vinyl24-bit",
-    "type": "audio",
-    "url": "https://archive.org/details/JohnColtrane-BlueTrain-Vinyl24-bit",
-    "title": "Blue Train",
-    "creator": "John Coltrane",
-    "tags": ["jazz", "saxofone", "bebop", "clássico"]
-  },
-  {
-    "id": "03-miles-davis-john-coltrane-konserthuset-stockholm-march-22-1960",
-    "type": "audio",
-    "url": "https://archive.org/details/03-miles-davis-john-coltrane-konserthuset-stockholm-march-22-1960",
-    "title": "Miles Davis & John Coltrane — Live in Stockholm",
-    "creator": "Miles Davis, John Coltrane",
-    "year": "1960",
-    "tags": ["jazz", "bebop", "trompete", "saxofone", "ao vivo"]
-  },
-  {
-    "id": "monks-music",
-    "type": "audio",
-    "url": "https://archive.org/details/monks-music",
-    "title": "Monk's Music",
-    "creator": "Thelonious Monk",
-    "tags": ["jazz", "piano", "bebop"]
-  },
-  {
-    "id": "solo-monk",
-    "type": "audio",
-    "url": "https://archive.org/details/solo-monk",
-    "title": "Solo Monk",
-    "creator": "Thelonious Monk",
-    "tags": ["jazz", "piano", "solo"]
-  },
-  {
-    "id": "the-art-of-charlie-parker-vol.-2-jazztone-j-1017",
-    "type": "audio",
-    "url": "https://archive.org/details/the-art-of-charlie-parker-vol.-2-jazztone-j-1017",
-    "title": "The Art of Charlie Parker Vol. 2",
-    "creator": "Charlie Parker",
-    "year": "1946",
-    "tags": ["jazz", "saxofone", "bebop"]
-  },
-  {
-    "id": "jimi_hendrix-in_the_beginning-vinyl-1973",
-    "type": "audio",
-    "url": "https://archive.org/details/jimi_hendrix-in_the_beginning-vinyl-1973",
-    "title": "In the Beginning",
-    "creator": "Jimi Hendrix",
-    "year": "1973",
-    "tags": ["rock", "guitarra", "psicodelia"]
-  },
-  {
-    "id": "hendrix-national-anthem",
-    "type": "audio",
-    "url": "https://archive.org/details/hendrix-national-anthem",
-    "title": "Hendrix — National Anthem",
-    "creator": "Jimi Hendrix",
-    "year": "1969",
-    "tags": ["rock", "guitarra", "ao vivo"]
-  },
-  {
-    "id": "james-brown-get-up-offa-that-thing-boston-1977",
-    "type": "audio",
-    "url": "https://archive.org/details/james-brown-get-up-offa-that-thing-boston-1977",
-    "title": "James Brown — Get Up Offa That Thing, Boston",
-    "creator": "James Brown",
+    "url": "https://archive.org/details/1977-nelson-cavaquinho-candeia-guilherme-de-brito-elton-medeiros-quatro-grandes-do-samba",
+    "title": "Quatro Grandes do Samba",
+    "creator": "Nelson Cavaquinho, Candeia, Guilherme de Brito e Elton Medeiros",
     "year": "1977",
-    "tags": ["funk", "soul", "ao vivo"]
+    "tags": ["samba", "música negra"]
   },
   {
-    "id": "NeverGetOutOfTheseBluesAliveside1",
+    "id": "1978-candeia-axe-gente-boa-do-samba",
     "type": "audio",
-    "url": "https://archive.org/details/NeverGetOutOfTheseBluesAliveside1",
-    "title": "Never Get Out of These Blues Alive",
-    "creator": "John Lee Hooker",
-    "year": "1972",
-    "tags": ["blues", "guitarra"]
+    "url": "https://archive.org/details/1978-candeia-axe-gente-boa-do-samba",
+    "title": "Axé! Gente Boa do Samba",
+    "creator": "Candeia",
+    "year": "1978",
+    "tags": ["samba", "música negra", "resistência"]
   },
   {
-    "id": "RedemptionSong_158",
+    "id": "1966-baden-powell-vinicius-de-moraes-os-afro-sambas-de-baden-e-vinicius",
     "type": "audio",
-    "url": "https://archive.org/details/RedemptionSong_158",
-    "title": "Redemption Song",
-    "creator": "Bob Marley and The Wailers",
-    "tags": ["reggae", "liberdade", "clássico"]
+    "url": "https://archive.org/details/1966-baden-powell-vinicius-de-moraes-os-afro-sambas-de-baden-e-vinicius",
+    "title": "Os Afro-Sambas de Baden e Vinícius",
+    "creator": "Baden Powell & Vinícius de Moraes",
+    "year": "1966",
+    "tags": ["afro-samba", "música negra"]
   },
   {
-    "id": "OtisRedding-sittinonTheDockOfTheBaymonsieurCortezBootlegClub",
+    "id": "1976-jorge-ben-africa-brasil",
     "type": "audio",
-    "url": "https://archive.org/details/OtisRedding-sittinonTheDockOfTheBaymonsieurCortezBootlegClub",
-    "title": "(Sittin' on) The Dock of the Bay",
-    "creator": "Otis Redding",
-    "tags": ["soul", "r&b", "clássico"]
+    "url": "https://archive.org/details/1976-jorge-ben-africa-brasil",
+    "title": "África Brasil",
+    "creator": "Jorge Ben",
+    "year": "1976",
+    "tags": ["MPB", "música negra", "afro-samba"]
   },
   {
-    "id": "waters-muddy-1947-64-mc-kinley-morganfield-side-b-archive-05",
+    "id": "jorgebenatabuadeesmeralda",
     "type": "audio",
-    "url": "https://archive.org/details/waters-muddy-1947-64-mc-kinley-morganfield-side-b-archive-05",
-    "title": "Muddy Waters LP (1947–64)",
-    "creator": "Muddy Waters",
-    "year": "1947",
-    "tags": ["blues", "guitarra", "clássico"]
+    "url": "https://archive.org/details/jorgebenatabuadeesmeralda",
+    "title": "A Tábua de Esmeralda",
+    "creator": "Jorge Ben",
+    "year": "1974",
+    "tags": ["MPB", "música negra"]
   },
   {
-    "id": "lp_aint-that-good-news_sam-cooke_item",
+    "id": "jorgebenforcabruta",
     "type": "audio",
-    "url": "https://archive.org/details/lp_aint-that-good-news_sam-cooke_item",
-    "title": "Ain't That Good News",
-    "creator": "Sam Cooke",
-    "year": "1964",
-    "tags": ["soul", "r&b", "clássico"]
-  },
-  {
-    "id": "lp_still-bill_bill_withers",
-    "type": "audio",
-    "url": "https://archive.org/details/lp_still-bill_bill_withers",
-    "title": "Still Bill",
-    "creator": "Bill Withers",
-    "year": "1972",
-    "tags": ["soul", "r&b", "clássico"]
-  },
-  {
-    "id": "MiriamMakeba_604",
-    "type": "audio",
-    "url": "https://archive.org/details/MiriamMakeba_604",
-    "title": "Miriam Makeba",
-    "creator": "Miriam Makeba",
-    "tags": ["afrobeat", "vocal feminino", "música africana"]
-  },
-  {
-    "id": "lp_this-girls-in-love-with-you_aretha-franklin_item",
-    "type": "audio",
-    "url": "https://archive.org/details/lp_this-girls-in-love-with-you_aretha-franklin_item",
-    "title": "This Girl's in Love with You",
-    "creator": "Aretha Franklin",
+    "url": "https://archive.org/details/jorgebenforcabruta",
+    "title": "Fôrça Bruta",
+    "creator": "Jorge Ben",
     "year": "1970",
-    "tags": ["soul", "r&b", "vocal feminino", "clássico"]
+    "tags": ["MPB", "música negra", "samba rock"]
   },
   {
-    "id": "duke-ellington-soul-call",
+    "id": "03.-jorge-ben-taj-mahal",
     "type": "audio",
-    "url": "https://archive.org/details/duke-ellington-soul-call",
-    "title": "Soul Call",
-    "creator": "Duke Ellington",
+    "url": "https://archive.org/details/03.-jorge-ben-taj-mahal",
+    "title": "Taj Mahal",
+    "creator": "Jorge Ben",
+    "year": "1972",
+    "tags": ["MPB", "música negra"]
+  },
+  {
+    "id": "LPMRGILBERTOGIL",
+    "type": "audio",
+    "url": "https://archive.org/details/LPMRGILBERTOGIL",
+    "title": "Gilberto Gil",
+    "creator": "Gilberto Gil",
+    "year": "1968",
+    "tags": ["MPB", "música negra"]
+  },
+  {
+    "id": "gilbertogilreggae",
+    "type": "audio",
+    "url": "https://archive.org/details/gilbertogilreggae",
+    "title": "Gilberto Gil canta reggae",
+    "creator": "Gilberto Gil",
+    "year": "1984",
+    "tags": ["MPB", "música negra"]
+  },
+  {
+    "id": "miltonnascimentotristesse",
+    "type": "audio",
+    "url": "https://archive.org/details/miltonnascimentotristesse",
+    "title": "Tristesse",
+    "creator": "Milton Nascimento",
     "year": "1967",
-    "tags": ["jazz", "big band", "swing", "ao vivo"]
+    "tags": ["MPB", "música negra"]
   },
   {
-    "id": "TheThrillIsGone_201509",
+    "id": "miltonnascimentoafemininavozdocantor",
     "type": "audio",
-    "url": "https://archive.org/details/TheThrillIsGone_201509",
-    "title": "The Thrill Is Gone",
-    "creator": "B.B. King",
-    "tags": ["blues", "guitarra", "clássico"]
+    "url": "https://archive.org/details/miltonnascimentoafemininavozdocantor",
+    "title": "A Feminina Voz do Cantor",
+    "creator": "Milton Nascimento",
+    "tags": ["MPB", "música negra", "mulher negra"]
   },
   {
-    "id": "lp_live-at-the-copa_the-temptations",
+    "id": "acidadei",
     "type": "audio",
-    "url": "https://archive.org/details/lp_live-at-the-copa_the-temptations",
-    "title": "Live at the Copa",
-    "creator": "The Temptations",
-    "year": "1967",
-    "tags": ["soul", "r&b", "ao vivo", "clássico"]
+    "url": "https://archive.org/details/acidadei",
+    "title": "Chico Science",
+    "creator": "Chico Science",
+    "tags": ["manguebeat", "música negra"]
   },
   {
-    "id": "bpl-littlerichard-1987",
+    "id": "1994-chico-science-nacao-zumbi-de-lama-ao-caos",
     "type": "audio",
-    "url": "https://archive.org/details/bpl-littlerichard-1987",
-    "title": "Little Richard — Live (1987)",
-    "creator": "Little Richard",
-    "year": "1987",
-    "tags": ["rock", "piano", "ao vivo", "clássico"]
+    "url": "https://archive.org/details/1994-chico-science-nacao-zumbi-de-lama-ao-caos",
+    "title": "Da Lama ao Caos",
+    "creator": "Chico Science & Nação Zumbi",
+    "year": "1994",
+    "tags": ["manguebeat", "música negra"]
   },
   {
-    "id": "Maybellene",
+    "id": "1996-chico-science-nacao-zumbi-afrociberdelia",
     "type": "audio",
-    "url": "https://archive.org/details/Maybellene",
-    "title": "Maybellene",
-    "creator": "Chuck Berry",
+    "url": "https://archive.org/details/1996-chico-science-nacao-zumbi-afrociberdelia",
+    "title": "Afrociberdelia",
+    "creator": "Chico Science & Nação Zumbi",
+    "year": "1996",
+    "tags": ["manguebeat", "música negra"]
+  },
+  {
+    "id": "21-pixinguinha-1x-0-um-a-zero",
+    "type": "audio",
+    "url": "https://archive.org/details/21-pixinguinha-1x-0-um-a-zero",
+    "title": "Um a Zero",
+    "creator": "Pixinguinha",
+    "year": "1946",
+    "tags": ["choro", "música negra"]
+  },
+  {
+    "id": "Lamentos",
+    "type": "audio",
+    "url": "https://archive.org/details/Lamentos",
+    "title": "Lamentos",
+    "creator": "Pixinguinha",
+    "year": "1928",
+    "tags": ["choro", "música negra"]
+  },
+  {
+    "id": "Ismael-Silva",
+    "type": "audio",
+    "url": "https://archive.org/details/Ismael-Silva",
+    "title": "Ismael Silva",
+    "creator": "Ismael Silva",
+    "tags": ["samba", "música negra"]
+  },
+  {
+    "id": "JoaoDaBahiana-MacumbaAndCorima",
+    "type": "audio",
+    "url": "https://archive.org/details/JoaoDaBahiana-MacumbaAndCorima",
+    "title": "Macumba e Corima",
+    "creator": "João da Bahiana",
+    "year": "1942",
+    "tags": ["macumba", "religião afro", "música negra"]
+  },
+  {
+    "id": "1955-heitor-dos-prazeres-e-sua-gente-macumba",
+    "type": "audio",
+    "url": "https://archive.org/details/1955-heitor-dos-prazeres-e-sua-gente-macumba",
+    "title": "Macumba",
+    "creator": "Heitor dos Prazeres e Sua Gente",
     "year": "1955",
-    "tags": ["rock", "guitarra", "clássico"]
+    "tags": ["macumba", "samba", "música negra"]
   },
   {
-    "id": "1975-fela-kuti-africa-70-expensive-shit",
+    "id": "1973-os-tincoas_202502",
     "type": "audio",
-    "url": "https://archive.org/details/1975-fela-kuti-africa-70-expensive-shit",
-    "title": "Expensive Shit",
-    "creator": "Fela Kuti & Africa 70",
-    "year": "1975",
-    "tags": ["afrobeat", "funk", "clássico"]
+    "url": "https://archive.org/details/1973-os-tincoas_202502",
+    "title": "Os Tincoãs",
+    "creator": "Os Tincoãs",
+    "year": "1973",
+    "tags": ["candomblé", "música negra", "afoxé"]
+  },
+  {
+    "id": "1957-orquestra-afro-brasileira-obaluaye",
+    "type": "audio",
+    "url": "https://archive.org/details/1957-orquestra-afro-brasileira-obaluaye",
+    "title": "Obaluayê!",
+    "creator": "Orquestra Afro-Brasileira",
+    "year": "1957",
+    "tags": ["afro-samba", "religião afro", "música negra"]
+  },
+  {
+    "id": "MoacirSantos",
+    "type": "audio",
+    "url": "https://archive.org/details/MoacirSantos",
+    "title": "Maracatu Nação do Amor",
+    "creator": "Moacir Santos",
+    "tags": ["maracatu", "música negra"]
+  },
+  {
+    "id": "lp_chants-et-danses-du-bresil_various-camafeu-de-oxossi-capoeira-ango",
+    "type": "audio",
+    "url": "https://archive.org/details/lp_chants-et-danses-du-bresil_various-camafeu-de-oxossi-capoeira-ango",
+    "title": "Chants et Danses du Brésil",
+    "creator": "Camafeu de Oxossi e Capoeira Angola",
+    "tags": ["capoeira", "candomblé", "música negra"]
+  },
+  {
+    "id": "atr021rhythmxango",
+    "type": "audio",
+    "url": "https://archive.org/details/atr021rhythmxango",
+    "title": "The Rhythm of Xangô: Early Music of Brazil on 78 RPM",
+    "creator": "Vários artistas",
+    "tags": ["78rpm", "religião afro", "música negra"]
+  },
+  {
+    "id": "78_carinhoso_dalva-de-oliveira-roberto-inglez-and-orchestra-pixinguinha_gbia3021802b",
+    "type": "audio",
+    "url": "https://archive.org/details/78_carinhoso_dalva-de-oliveira-roberto-inglez-and-orchestra-pixinguinha_gbia3021802b",
+    "title": "Carinhoso",
+    "creator": "Dalva de Oliveira, Roberto Inglez e Orquestra Pixinguinha",
+    "tags": ["78rpm", "choro", "música negra"]
+  },
+  {
+    "id": "1942-native-brazilian-music-vol-1",
+    "type": "audio",
+    "url": "https://archive.org/details/1942-native-brazilian-music-vol-1",
+    "title": "Native Brazilian Music, Volume 1",
+    "creator": "Vários artistas",
+    "year": "1942",
+    "tags": ["78rpm", "música negra", "samba"]
+  },
+  {
+    "id": "1942-native-brazilian-music-vol-2",
+    "type": "audio",
+    "url": "https://archive.org/details/1942-native-brazilian-music-vol-2",
+    "title": "Native Brazilian Music, Volume 2",
+    "creator": "Vários artistas",
+    "year": "1942",
+    "tags": ["78rpm", "música negra", "samba"]
+  },
+  {
+    "id": "ElzaSoares",
+    "type": "audio",
+    "url": "https://archive.org/details/ElzaSoares",
+    "title": "Elza Soares",
+    "creator": "Elza Soares",
+    "tags": ["samba", "música negra", "mulher negra"]
+  },
+  {
+    "id": "16-overdose-de-cocada",
+    "type": "audio",
+    "url": "https://archive.org/details/16-overdose-de-cocada",
+    "title": "Grandes Sucessos",
+    "creator": "Bezerra da Silva",
+    "year": "2003",
+    "tags": ["samba", "música negra"]
+  },
+  {
+    "id": "05-com-dinheiro-tudo-bem",
+    "type": "audio",
+    "url": "https://archive.org/details/05-com-dinheiro-tudo-bem",
+    "title": "Bezerra da Silva (1995)",
+    "creator": "Bezerra da Silva",
+    "year": "1995",
+    "tags": ["samba", "música negra"]
+  },
+  {
+    "id": "07-se-nao-avisar-o-bicho-pega",
+    "type": "audio",
+    "url": "https://archive.org/details/07-se-nao-avisar-o-bicho-pega",
+    "title": "Eu Não Sou Santo",
+    "creator": "Bezerra da Silva",
+    "year": "1990",
+    "tags": ["samba", "música negra"]
+  },
+  {
+    "id": "4ArlindoCruzVolta",
+    "type": "audio",
+    "url": "https://archive.org/details/4ArlindoCruzVolta",
+    "title": "Arlindo Cruz",
+    "creator": "Arlindo Cruz",
+    "tags": ["samba", "música negra"]
+  },
+  {
+    "id": "04FachoDeEsperanaNascenteDaPazPoesiaDeNNsDoisFundoDeQuintal",
+    "type": "audio",
+    "url": "https://archive.org/details/04FachoDeEsperanaNascenteDaPazPoesiaDeNNsDoisFundoDeQuintal",
+    "title": "Facho de Esperança",
+    "creator": "Fundo de Quintal",
+    "tags": ["samba", "música negra"]
+  },
+  {
+    "id": "01-jorge-aragao-novos-tempos-ao-vivo",
+    "type": "audio",
+    "url": "https://archive.org/details/01-jorge-aragao-novos-tempos-ao-vivo",
+    "title": "Jorge Aragão ao Vivo",
+    "creator": "Jorge Aragão",
+    "tags": ["samba", "música negra"]
+  },
+  {
+    "id": "05-jorge-aragao-so-por-um-momento-ao-vivo",
+    "type": "audio",
+    "url": "https://archive.org/details/05-jorge-aragao-so-por-um-momento-ao-vivo",
+    "title": "Só por um Momento (Ao Vivo)",
+    "creator": "Jorge Aragão",
+    "tags": ["samba", "música negra"]
+  },
+  {
+    "id": "01-negritude-junior-absoluta",
+    "type": "audio",
+    "url": "https://archive.org/details/01-negritude-junior-absoluta",
+    "title": "Gente da Gente",
+    "creator": "Negritude Junior",
+    "tags": ["samba", "música negra"]
+  },
+  {
+    "id": "04-negritude-junior-nossa-procura",
+    "type": "audio",
+    "url": "https://archive.org/details/04-negritude-junior-nossa-procura",
+    "title": "Deixa Acontecer",
+    "creator": "Negritude Junior",
+    "tags": ["samba", "música negra"]
+  },
+  {
+    "id": "EXALTASAMBA",
+    "type": "audio",
+    "url": "https://archive.org/details/EXALTASAMBA",
+    "title": "Exaltasamba",
+    "creator": "Exaltasamba",
+    "tags": ["samba", "música negra"]
+  },
+  {
+    "id": "02-exaltasamba-cartao-postal_202610",
+    "type": "audio",
+    "url": "https://archive.org/details/02-exaltasamba-cartao-postal_202610",
+    "title": "Cartão Postal",
+    "creator": "Exaltasamba",
+    "year": "2000",
+    "tags": ["samba", "música negra"]
+  },
+  {
+    "id": "estilo-cachorro-racionais",
+    "type": "audio",
+    "url": "https://archive.org/details/estilo-cachorro-racionais",
+    "title": "Estilo Cachorro",
+    "creator": "Racionais MC's",
+    "tags": ["rap", "música negra", "resistência"]
+  },
+  {
+    "id": "racionais-mcs-negro-drama",
+    "type": "audio",
+    "url": "https://archive.org/details/racionais-mcs-negro-drama",
+    "title": "Negro Drama",
+    "creator": "Racionais MC's",
+    "year": "2002",
+    "tags": ["rap", "música negra"]
+  },
+  {
+    "id": "08racionaismcs12deoutubro",
+    "type": "audio",
+    "url": "https://archive.org/details/08racionaismcs12deoutubro",
+    "title": "12 de Outubro",
+    "creator": "Racionais MC's",
+    "year": "2019",
+    "tags": ["rap", "música negra"]
+  },
+  {
+    "id": "Emicida-PraQuemJMordeuUmCachorroPorComidaAtQueEuChegueiLonge2009Rappratodos.blogspot.com.br",
+    "type": "audio",
+    "url": "https://archive.org/details/Emicida-PraQuemJMordeuUmCachorroPorComidaAtQueEuChegueiLonge2009Rappratodos.blogspot.com.br",
+    "title": "Pra Quem Já Mordeu um Cachorro por Comida, Até Que Eu Cheguei Longe",
+    "creator": "Emicida",
+    "year": "2009",
+    "tags": ["rap", "música negra"]
+  },
+  {
+    "id": "emicida-amarelo-ao-vivo-2021-www.rappratodos.com.br_202311",
+    "type": "audio",
+    "url": "https://archive.org/details/emicida-amarelo-ao-vivo-2021-www.rappratodos.com.br_202311",
+    "title": "AmarElo (Ao Vivo)",
+    "creator": "Emicida",
+    "year": "2021",
+    "tags": ["rap", "música negra"]
+  },
+  {
+    "id": "100-marcelo-d2-2025-www.rappratodos.com.br",
+    "type": "audio",
+    "url": "https://archive.org/details/100-marcelo-d2-2025-www.rappratodos.com.br",
+    "title": "100% Marcelo D2",
+    "creator": "Marcelo D2",
+    "year": "2025",
+    "tags": ["rap", "samba", "música negra"]
+  },
+  {
+    "id": "marcelo-d2-amar-e-para-os-fortes-2018-www.rappratodos.com.br",
+    "type": "audio",
+    "url": "https://archive.org/details/marcelo-d2-amar-e-para-os-fortes-2018-www.rappratodos.com.br",
+    "title": "Amar é para os Fortes",
+    "creator": "Marcelo D2",
+    "year": "2018",
+    "tags": ["rap", "samba", "música negra"]
+  },
+  {
+    "id": "Criolo-NNaOrelha-NNaOrelhaAoVivoNoCircoVoador2013Rappratodos.blogspot.com.br",
+    "type": "audio",
+    "url": "https://archive.org/details/Criolo-NNaOrelha-NNaOrelhaAoVivoNoCircoVoador2013Rappratodos.blogspot.com.br",
+    "title": "Nó na Orelha (Ao Vivo no Circo Voador)",
+    "creator": "Criolo",
+    "year": "2013",
+    "tags": ["rap", "música negra"]
+  },
+  {
+    "id": "criolo-criolo-amaro-e-dino-2026-www.rappratodos.com.br",
+    "type": "audio",
+    "url": "https://archive.org/details/criolo-criolo-amaro-e-dino-2026-www.rappratodos.com.br",
+    "title": "Criolo, Amaro e Dino",
+    "creator": "Criolo",
+    "year": "2026",
+    "tags": ["rap", "música negra"]
+  },
+  {
+    "id": "PlanetHemp-NegaDoCabeloDurodivisionDubRemix",
+    "type": "audio",
+    "url": "https://archive.org/details/PlanetHemp-NegaDoCabeloDurodivisionDubRemix",
+    "title": "Nega do Cabelo Duro (Dub Remix)",
+    "creator": "Planet Hemp",
+    "year": "2011",
+    "tags": ["rap", "música negra"]
+  },
+  {
+    "id": "05-elizeth-cardoso-eu-bebo-sim",
+    "type": "audio",
+    "url": "https://archive.org/details/05-elizeth-cardoso-eu-bebo-sim",
+    "title": "Samba Rock, Vol. 1",
+    "creator": "Elizeth Cardoso e convidados",
+    "tags": ["samba rock", "samba", "música negra"]
+  },
+  {
+    "id": "rio-baile-funk-favela-booty-beats",
+    "type": "audio",
+    "url": "https://archive.org/details/rio-baile-funk-favela-booty-beats",
+    "title": "Rio Baile Funk: Favela Booty Beats",
+    "creator": "Vários artistas",
+    "year": "2004",
+    "tags": ["funk", "música negra"]
+  },
+  {
+    "id": "MangueBeat",
+    "type": "audio",
+    "url": "https://archive.org/details/MangueBeat",
+    "title": "MangueBeat",
+    "creator": "Vários artistas",
+    "year": "2014",
+    "tags": ["manguebeat", "música negra"]
+  },
+  {
+    "id": "CortejoDoSambaDeRodaDeDonaDalvaESambaDeTerreiro",
+    "type": "audio",
+    "url": "https://archive.org/details/CortejoDoSambaDeRodaDeDonaDalvaESambaDeTerreiro",
+    "title": "Cortejo do Samba de Roda de Dona Dalva",
+    "creator": "Samba de Roda de Dona Dalva e Samba de Terreiro",
+    "year": "2017",
+    "tags": ["samba de roda", "samba", "música negra"]
+  },
+  {
+    "id": "35adeuscangomaadeus",
+    "type": "audio",
+    "url": "https://archive.org/details/35adeuscangomaadeus",
+    "title": "Roda de Jongo na Casa Luz de Yorimá",
+    "creator": "Apoena Machado Cunha",
+    "year": "2020",
+    "tags": ["jongo", "religião afro", "música negra"]
+  },
+  {
+    "id": "FestaDeCabocloNoTerreiroOgunDey",
+    "type": "audio",
+    "url": "https://archive.org/details/FestaDeCabocloNoTerreiroOgunDey",
+    "title": "Festa de Caboclo no Terreiro Ogodô Dey",
+    "creator": "Terreiro Ogodô Dey",
+    "year": "2017",
+    "tags": ["candomblé", "religião afro", "música negra"]
+  },
+  {
+    "id": "afoxe",
+    "type": "audio",
+    "url": "https://archive.org/details/afoxe",
+    "title": "Afoxé Oyá Tókolé",
+    "creator": "Okupa UFPE",
+    "year": "2016",
+    "tags": ["afoxé", "religião afro", "música negra"]
+  },
+  {
+    "id": "Afoxeijexa",
+    "type": "audio",
+    "url": "https://archive.org/details/Afoxeijexa",
+    "title": "Ijexá – Afoxé",
+    "creator": "Marcelo Borba",
+    "tags": ["ijexá", "afoxé", "música negra"]
+  },
+  {
+    "id": "04-bumba-meu-boi",
+    "type": "audio",
+    "url": "https://archive.org/details/04-bumba-meu-boi",
+    "title": "Bumba Meu Boi",
+    "creator": "Vários artistas",
+    "tags": ["folclore negro", "música negra"]
+  },
+  {
+    "id": "1103-diaspora-pgm-o-que-e-o-candomble-ketu",
+    "type": "audio",
+    "url": "https://archive.org/details/1103-diaspora-pgm-o-que-e-o-candomble-ketu",
+    "title": "O Que É o Candomblé Ketu?",
+    "creator": "Nkinpa",
+    "year": "2021",
+    "tags": ["candomblé", "religião afro"]
+  },
+  {
+    "id": "2503-diaspora-pgm-12-o-que-e-o-candomble-angola",
+    "type": "audio",
+    "url": "https://archive.org/details/2503-diaspora-pgm-12-o-que-e-o-candomble-angola",
+    "title": "O Que É o Candomblé Angola",
+    "creator": "Nkinpa",
+    "year": "2020",
+    "tags": ["candomblé", "religião afro"]
+  },
+  {
+    "id": "1012-diaspora-pgm-43",
+    "type": "audio",
+    "url": "https://archive.org/details/1012-diaspora-pgm-43",
+    "title": "O Que É o Maracatu?",
+    "creator": "Nkinpa",
+    "tags": ["maracatu", "música negra"]
+  },
+  {
+    "id": "1712-diaspora-pgm-44-ok",
+    "type": "audio",
+    "url": "https://archive.org/details/1712-diaspora-pgm-44-ok",
+    "title": "O Que É o Jongo?",
+    "creator": "Nkinpa",
+    "year": "2020",
+    "tags": ["jongo", "música negra"]
+  },
+  {
+    "id": "Fervilhar_Frevo",
+    "type": "audio",
+    "url": "https://archive.org/details/Fervilhar_Frevo",
+    "title": "Fervilhar",
+    "creator": "Marcos Oliva e Tiago Mocoto",
+    "tags": ["frevo", "música negra"]
+  },
+  {
+    "id": "Lundu",
+    "type": "audio",
+    "url": "https://archive.org/details/Lundu",
+    "title": "Lundu",
+    "creator": "Anônimo",
+    "year": "1998",
+    "tags": ["lundu", "música negra"]
+  },
+  {
+    "id": "banda-black-rio",
+    "title": "Maria Fumaça",
+    "creator": "Banda Black Rio",
+    "year": "1977",
+    "tags": ["samba rock", "funk", "música negra"],
+    "type": "audio",
+    "url": "https://archive.org/details/banda-black-rio"
+  },
+  {
+    "id": "BandaBlackRio-GafieiraUniversal",
+    "title": "Gafieira Universal",
+    "creator": "Banda Black Rio",
+    "year": "1978",
+    "tags": ["samba rock", "funk", "música negra"],
+    "type": "audio",
+    "url": "https://archive.org/details/BandaBlackRio-GafieiraUniversal"
+  },
+  {
+    "id": "BandaBlackRio-SuperNovaSambaFunk",
+    "title": "Super Nova Samba Funk",
+    "creator": "Banda Black Rio",
+    "year": "2011",
+    "tags": ["samba rock", "funk", "música negra"],
+    "type": "audio",
+    "url": "https://archive.org/details/BandaBlackRio-SuperNovaSambaFunk"
   }
 ]

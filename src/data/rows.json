@@ -1,153 +1,43 @@
 [
   {
-    "id": "jazz-classico",
-    "title": "Jazz clássico",
-    "tags": ["jazz"]
+    "id": "destaques",
+    "title": "Destaques do Acervo",
+    "types": ["audio", "video", "image", "text"]
   },
   {
-    "id": "blues-essenciais",
-    "title": "Blues essenciais",
-    "tags": ["blues"]
+    "id": "samba",
+    "title": "Samba",
+    "tags": ["samba"]
   },
   {
-    "id": "soul-e-rnb",
-    "title": "Soul e R&B",
-    "tags": ["soul", "r&b"]
+    "id": "samba-de-roda",
+    "title": "Samba de Roda",
+    "tags": ["samba de roda"]
   },
   {
-    "id": "funk-e-ritmo",
-    "title": "Funk e ritmo",
-    "tags": ["funk"]
+    "id": "capoeira",
+    "title": "Capoeira",
+    "tags": ["capoeira", "capoeira angola"]
   },
   {
-    "id": "gospel-e-espiritual",
-    "title": "Gospel e espiritual",
-    "tags": ["gospel", "espiritual"]
+    "id": "candomble",
+    "title": "Candomblé",
+    "tags": ["candomblé", "terreiro"]
   },
   {
-    "id": "bebop-e-improviso",
-    "title": "Bebop e improviso",
-    "tags": ["bebop"]
+    "id": "religiao-afro",
+    "title": "Religião Afro-Brasileira",
+    "tags": ["religião afro", "umbanda", "macumba", "quimbanda"]
   },
   {
-    "id": "big-band-e-swing",
-    "title": "Big band e swing",
-    "tags": ["big band", "swing"]
+    "id": "quilombos",
+    "title": "Quilombos",
+    "tags": ["quilombos", "resistência"]
   },
   {
-    "id": "saxofone",
-    "title": "Saxofone em destaque",
-    "tags": ["saxofone"]
-  },
-  {
-    "id": "piano-e-teclas",
-    "title": "Piano e teclas",
-    "tags": ["piano"]
-  },
-  {
-    "id": "vozes-femininas",
-    "title": "Vozes femininas",
-    "tags": ["vocal feminino"]
-  },
-  {
-    "id": "rock-e-guitarra",
-    "title": "Rock e guitarra",
-    "tags": ["rock", "guitarra"]
-  },
-  {
-    "id": "ao-vivo",
-    "title": "Apresentações ao vivo",
-    "tags": ["ao vivo"]
-  },
-  {
-    "id": "cinema-negro",
-    "title": "Cinema negro",
-    "tags": ["cinema negro"]
-  },
-  {
-    "id": "blaxploitation",
-    "title": "Blaxploitation",
-    "tags": ["blaxploitation"]
-  },
-  {
-    "id": "dramas",
-    "title": "Dramas",
-    "tags": ["drama"]
-  },
-  {
-    "id": "documentarios",
-    "title": "Documentários",
-    "tags": ["documentário"]
-  },
-  {
-    "id": "direitos-civis",
-    "title": "Direitos civis",
-    "tags": ["direitos civis"]
-  },
-  {
-    "id": "panteras-negras",
-    "title": "Panteras Negras",
-    "tags": ["panteras negras"]
-  },
-  {
-    "id": "malcolm-x",
-    "title": "Malcolm X",
-    "tags": ["malcolm x"]
-  },
-  {
-    "id": "martin-luther-king",
-    "title": "Martin Luther King",
-    "tags": ["martin luther king"]
-  },
-  {
-    "id": "historia-e-arquivo",
-    "title": "História e arquivo",
-    "tags": ["história", "arquivo"]
-  },
-  {
-    "id": "mulheres-negras",
-    "title": "Mulheres negras",
-    "tags": ["mulheres negras"]
-  },
-  {
-    "id": "nasa-e-espaco",
-    "title": "NASA e espaço",
-    "tags": ["nasa", "espaço"]
-  },
-  {
-    "id": "ciencia-e-educacao",
-    "title": "Ciência e educação",
-    "tags": ["ciência", "educação"]
-  },
-  {
-    "id": "juneteenth",
-    "title": "Juneteenth e celebrações",
-    "tags": ["juneteenth", "celebração"]
-  },
-  {
-    "id": "retratos",
-    "title": "Retratos",
-    "tags": ["retrato"]
-  },
-  {
-    "id": "fotografia",
-    "title": "Fotografia",
-    "tags": ["fotografia"]
-  },
-  {
-    "id": "militar-e-guerra",
-    "title": "Militar e guerra",
-    "tags": ["militar", "guerra"]
-  },
-  {
-    "id": "autobiografias",
-    "title": "Autobiografias e memórias",
-    "tags": ["autobiografia", "memórias"]
-  },
-  {
-    "id": "romances",
-    "title": "Obras românticas",
-    "tags": ["romance"]
+    "id": "literatura-afro",
+    "title": "Literatura Afro-Brasileira",
+    "tags": ["literatura", "contos"]
   },
   {
     "id": "poesia",
@@ -155,43 +45,93 @@
     "tags": ["poesia"]
   },
   {
-    "id": "ensaios-e-teoria",
-    "title": "Ensaios e teoria",
-    "tags": ["ensaio", "teoria"]
+    "id": "mulheres-negras",
+    "title": "Mulheres Negras",
+    "tags": ["mulher negra"]
   },
   {
-    "id": "escravidao-e-liberdade",
-    "title": "Escravidão e liberdade",
-    "tags": ["escravidão", "liberdade"]
+    "id": "historia-negra",
+    "title": "História Negra",
+    "tags": ["história", "consciência negra", "movimento negro"]
   },
   {
-    "id": "literatura",
-    "title": "Literatura",
-    "tags": ["literatura"]
+    "id": "musica-negra",
+    "title": "Música Negra Brasileira",
+    "tags": ["música negra"]
   },
   {
-    "id": "classicos",
-    "title": "Clássicos",
-    "tags": ["clássico"]
+    "id": "78rpm",
+    "title": "Gravações em 78 RPM",
+    "tags": ["78rpm"]
   },
   {
-    "id": "so-audio",
-    "title": "Só áudio",
+    "id": "bossa-e-mpb",
+    "title": "Bossa Nova e MPB",
+    "tags": ["bossa nova", "MPB"]
+  },
+  {
+    "id": "maracatu-jongo",
+    "title": "Maracatu, Jongo e Afoxé",
+    "tags": ["maracatu", "jongo", "afoxé", "ijexá"]
+  },
+  {
+    "id": "funk-hip-hop",
+    "title": "Funk, Hip-Hop e Manguebeat",
+    "tags": ["funk", "hip-hop", "manguebeat", "rap", "samba rock"]
+  },
+  {
+    "id": "cinema",
+    "title": "Cinema e Documentário",
+    "tags": ["cinema", "filme", "documentário"]
+  },
+  {
+    "id": "carnaval",
+    "title": "Carnaval e Escolas de Samba",
+    "tags": ["carnaval", "escola de samba", "festa"]
+  },
+  {
+    "id": "audios",
+    "title": "Áudios do Acervo",
     "types": ["audio"]
   },
   {
-    "id": "so-video",
-    "title": "Só vídeo",
+    "id": "filmes",
+    "title": "Filmes do Acervo",
     "types": ["video"]
   },
   {
-    "id": "so-imagem",
-    "title": "Só imagem",
+    "id": "fotografias",
+    "title": "Fotografias do Acervo",
     "types": ["image"]
   },
   {
-    "id": "so-texto",
-    "title": "Só texto",
+    "id": "leituras",
+    "title": "Leituras do Acervo",
     "types": ["text"]
+  },
+  {
+    "id": "memorias",
+    "title": "Memórias e Testemunhos",
+    "tags": ["memórias", "crônicas"]
+  },
+  {
+    "id": "teatro-negro",
+    "title": "Teatro Negro",
+    "tags": ["teatro"]
+  },
+  {
+    "id": "choro",
+    "title": "Choro e Seresta",
+    "tags": ["choro", "lundu"]
+  },
+  {
+    "id": "frevo",
+    "title": "Frevo e Ritmos Pernambucanos",
+    "tags": ["frevo", "maracatu"]
+  },
+  {
+    "id": "imprensa-negra",
+    "title": "Imprensa Negra",
+    "tags": ["imprensa negra", "movimento negro"]
   }
 ]
