@@ -45,6 +45,12 @@ Para instalar direto no aparelho (com depuração USB ativada):
 npx cap run android
 ```
 
+O site oferece o download do app: o botão na top bar aponta para
+`releases/latest/download/app-debug.apk` no GitHub. No desktop ele abre um QR
+code para baixar no celular; no celular, baixa o APK diretamente. Para manter o
+botão funcionando, publique o APK com esse mesmo nome de arquivo na release
+marcada como mais recente.
+
 Comportamentos nativos configurados:
 
 - **Orientação**: sempre retrato, exceto no fullscreen do player de vídeo

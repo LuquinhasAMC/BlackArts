@@ -5,6 +5,7 @@ import { Search } from "lucide-react"
 import { FavoritesViewToggle } from "@/components/favorites/favorites-view-toggle"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { DownloadAppButton } from "./download-app-button"
 
 /** Título exibido na barra de acordo com a rota. */
 const PAGE_TITLES: Record<string, string> = {
@@ -45,8 +46,11 @@ export function Header() {
           {title}
         </h1>
 
-        {showSearch && (
-          <div className="ml-auto flex items-center gap-1">
+        {/* À direita: baixar o app e, fora dos favoritos, a pesquisa. */}
+        <div className="ml-auto flex items-center gap-1">
+          <DownloadAppButton />
+
+          {showSearch ? (
             <Button
               type="button"
               variant="ghost"
@@ -58,15 +62,11 @@ export function Header() {
                 <Search className="size-4" aria-hidden />
               </Link>
             </Button>
-          </div>
-        )}
-
-        {/* Nos favoritos, a direita da barra alterna grade/lista. */}
-        {pathname === "/favorites" && (
-          <div className="ml-auto flex items-center">
+          ) : (
+            /* Nos favoritos, a direita da barra alterna grade/lista. */
             <FavoritesViewToggle />
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       {/* Degradê abaixo da barra quando sólida, para misturar com o
