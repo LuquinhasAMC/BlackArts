@@ -1,5 +1,20 @@
 # Bancos de dados curados (Internet Archive)
 
+> **Fonte oficial:** estes dados ficam no repositório público
+> [`LuquinhasAMC/BlackArts-data`](https://github.com/LuquinhasAMC/BlackArts-data).
+> O app lê os JSONs diretamente de lá em tempo de execução, como os
+> endpoints de uma API somente leitura
+> (`raw.githubusercontent.com/.../main/<tipo>.json`) e guarda uma cópia no
+> **IndexedDB** do navegador/WebView (não há cópias em `src/data/`).
+>
+> Ao abrir a tela inicial, **uma única requisição** à API do GitHub
+> (`/repos/LuquinhasAMC/BlackArts-data/commits/main`) verifica se o
+> repositório mudou. Se mudou, os arquivos são baixados de novo, a cópia
+> local é atualizada e um toast avisa que o conteúdo foi atualizado. Sem
+> conexão (ou se ainda não há cópia local), o app usa o IndexedDB e, quando
+> não há nada guardado e a requisição falha, mostra o erro com o botão
+> **Tentar novamente**.
+
 Obras selecionadas **manualmente** no Internet Archive. Critério de curadoria:
 **obras de autores negros ou cuja negritude é o tema central** (religiões de
 matriz africana, samba e ritmos afro-brasileiros, capoeira, quilombos,
@@ -71,4 +86,5 @@ sorteadas a cada visita, com as obras também em ordem aleatória.
    ou diretamente em `https://archive.org/details/<id>`.
 2. Confirme que o item existe e o `mediatype` corresponde ao arquivo JSON.
 3. Adicione `{ "id", "type", "url" }` (e `title`/`tags` sempre que possível)
-   ao arquivo correspondente — a obra passa a aparecer no catálogo.
+   ao arquivo correspondente **no repositório BlackArts-data** — a obra passa
+   a aparecer no catálogo assim que o app recarregar os dados.

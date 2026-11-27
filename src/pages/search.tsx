@@ -2,7 +2,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { ArrowLeft } from "lucide-react"
 
-import { CatalogEmpty } from "@/components/catalog/catalog-states"
+import {
+  CatalogEmpty,
+  CatalogError,
+  CatalogLoading,
+} from "@/components/catalog/catalog-states"
 import { CatalogGrid } from "@/components/catalog/catalog-grid"
 import { CatalogList } from "@/components/catalog/catalog-list"
 import { ViewToggle } from "@/components/catalog/view-toggle"
@@ -16,7 +20,7 @@ import { SearchField } from "@/components/search/search-field"
 import { SearchHistory } from "@/components/search/search-history"
 import { useAudioPlayback } from "@/components/media/audio-playback"
 import { Button } from "@/components/ui/button"
-import { CURATED_ITEMS, curatedToCatalogItem, sample } from "@/data/curated"
+import { curatedToCatalogItem, sample, useCuratedCatalog } from "@/data/curated"
 import { useDebounce } from "@/hooks/use-debounce"
 import { setSearchView, useSearchView } from "@/lib/catalog-view"
 import {
@@ -47,6 +51,13 @@ export default function SearchPage() {
   const { active: audioActive } = useAudioPlayback()
   const view = useSearchView()
   const history = useSearchHistory()
+  // Obras curadas: vêm da cópia local (IndexedDB), sincronizada pelo Início.
+  const {
+    items: curatedItems,
+    isPending: catalogPending,
+    isError: catalogFailed,
+    retry: retryCatalog,
+  } = useCuratedCatalog()
 
   const q = searchParams.get("q") ?? ""
   const typeParam = searchParams.get("type") ?? "all"
@@ -107,11 +118,16 @@ export default function SearchPage() {
     [setSearchParams]
   )
 
-  const allItems = useMemo(() => CURATED_ITEMS.map(curatedToCatalogItem), [])
+  const allItems = useMemo(
+    () => curatedItems.map(curatedToCatalogItem),
+    [curatedItems]
+  )
 
-  // Sorteio guardado na montagem: o filtro de tipo não interfere nele.
-  const [recommendations] = useState(() =>
-    sample(allItems, RECOMMENDATION_COUNT)
+  // Sorteio guardado enquanto o catálogo não muda: o filtro de tipo não
+  // interfere nele.
+  const recommendations = useMemo(
+    () => sample(allItems, RECOMMENDATION_COUNT),
+    [allItems]
   )
 
   const term = debouncedQ.trim().toLowerCase()
@@ -253,7 +269,11 @@ export default function SearchPage() {
                 : "Recomendações"}
             </h2>
 
-            {searching && items.length === 0 ? (
+            {catalogPending ? (
+              <CatalogLoading count={6} />
+            ) : catalogFailed ? (
+              <CatalogError onRetry={() => void retryCatalog()} />
+            ) : searching && items.length === 0 ? (
               <CatalogEmpty
                 title="Nenhuma obra encontrada"
                 description="A curadoria não tem obras com esses filtros. Tente outro termo ou remova os filtros aplicados."

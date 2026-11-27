@@ -42,6 +42,25 @@ export const ARCHIVE = {
 } as const
 
 /**
+ * Repositório público com os dados curados do app (obras e fileiras).
+ * Os arquivos `audio.json`, `video.json`, `image.json`, `text.json` e
+ * `rows.json` ficam na raiz e são servidos pelo raw.githubusercontent.com.
+ */
+export const CURATED_DATA = {
+  baseUrl: "https://raw.githubusercontent.com/LuquinhasAMC/BlackArts-data/main",
+  /**
+   * Endpoint da API do GitHub que devolve o commit mais recente do
+   * repositório. Uma única requisição revela se algum arquivo mudou.
+   */
+  revisionUrl:
+    "https://api.github.com/repos/LuquinhasAMC/BlackArts-data/commits/main",
+  /** Nome do banco IndexedDB com a cópia local do catálogo. */
+  cacheDbName: "blackarts-data",
+  /** Timeout das requisições de dados. */
+  requestTimeoutMs: 15_000,
+} as const
+
+/**
  * Termos padrão de busca relacionados à negritude, diáspora africana e
  * cultura afro-brasileira. Usados apenas quando a pessoa usuária não
  * digita nada — a busca livre sempre tem prioridade.

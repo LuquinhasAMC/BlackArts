@@ -2,18 +2,21 @@ import { useState } from "react"
 import { Navigate, useSearchParams } from "react-router-dom"
 import { RefreshCw } from "lucide-react"
 
+import { CatalogError } from "@/components/catalog/catalog-states"
 import { ContentRow } from "@/components/home/content-row"
 import { ContinueRow } from "@/components/home/continue-row"
 import { FeaturedHero } from "@/components/home/featured-hero"
+import { PageLoader } from "@/components/layout/page-loader"
 import { usePullToRefresh } from "@/hooks/use-pull-to-refresh"
-import { cn } from "@/lib/utils"
 import {
-  CURATED_ITEMS,
-  CURATED_ROWS,
   itemsForRow,
   sample,
   shuffle,
+  useCuratedCatalog,
+  type CuratedCatalog,
+  type CuratedItem,
 } from "@/data/curated"
+import { cn } from "@/lib/utils"
 
 /** Quantidade de fileiras exibidas na tela inicial. */
 const FEED_ROW_COUNT = 10
@@ -41,20 +44,22 @@ export default function HomePage() {
 /** Sorteio da tela inicial, guardado enquanto o app estiver aberto: voltar
  *  para o Início (de Favoritos, da pesquisa ou de uma obra) mantém as
  *  mesmas fileiras em vez de sortear tudo de novo. */
-function buildFeed() {
+function buildFeed(catalog: CuratedCatalog) {
   const types = ["audio", "video", "image", "text"] as const
   const perType = types.flatMap((type) =>
     sample(
-      CURATED_ITEMS.filter((item) => item.type === type),
+      catalog.items.filter((item) => item.type === type),
       DISCOVER_PER_TYPE
     )
   )
-  const withItems = CURATED_ROWS.filter((row) => itemsForRow(row).length > 0)
+  const withItems = catalog.rows.filter(
+    (row) => itemsForRow(row, catalog.items).length > 0
+  )
   return {
     discover: shuffle(perType),
     rows: sample(withItems, FEED_ROW_COUNT).map((row) => ({
       row,
-      items: shuffle(itemsForRow(row)),
+      items: shuffle(itemsForRow(row, catalog.items)),
     })),
   }
 }
@@ -62,33 +67,91 @@ function buildFeed() {
 type FeedSnapshot = ReturnType<typeof buildFeed>
 
 let feedSnapshot: FeedSnapshot | null = null
+let feedSnapshotSource: CuratedItem[] | null = null
 
-function getFeed(): FeedSnapshot {
-  feedSnapshot ??= buildFeed()
+/** Sorteio guardado: reaproveita o snapshot enquanto o catálogo for o
+ *  mesmo (o TanStack Query mantém a identidade dos dados em cache). */
+function takeFeed(
+  catalog?: CuratedCatalog | null,
+  { fresh = false }: { fresh?: boolean } = {}
+): FeedSnapshot | null {
+  if (!catalog) {
+    return null
+  }
+  if (!fresh && feedSnapshot && feedSnapshotSource === catalog.items) {
+    return feedSnapshot
+  }
+  feedSnapshot = buildFeed(catalog)
+  feedSnapshotSource = catalog.items
   return feedSnapshot
 }
 
 /** Tela inicial padrão: destaque + fileiras. */
 function Feed() {
-  const [feed, setFeed] = useState(getFeed)
+  // Entrar na tela inicial também confere no repositório (uma requisição)
+  // se o conteúdo mudou; a cópia local vem do IndexedDB.
+  const { catalog, isPending, isError, retry, refresh } = useCuratedCatalog({
+    checkUpdates: true,
+  })
+  // Sorteio local (também usado depois do "puxar para atualizar", que
+  // embaralha de novo). Reaproveita o cache do módulo enquanto o
+  // catálogo for o mesmo.
+  const [feed, setFeed] = useState<{
+    source: CuratedItem[]
+    value: FeedSnapshot
+  } | null>(() => {
+    const value = takeFeed(catalog)
+    return catalog && value ? { source: catalog.items, value } : null
+  })
+
+  const currentFeed =
+    catalog && feed?.source === catalog.items ? feed.value : takeFeed(catalog)
 
   // Puxar para baixo no topo sorteia a tela de novo (sem recarregar a página).
   const { pull, refreshing, dragging } = usePullToRefresh(
     () =>
       new Promise<void>((resolve) => {
         window.setTimeout(() => {
-          const next = buildFeed()
-          feedSnapshot = next
-          setFeed(next)
-          resolve()
+          void (async () => {
+            const nextCatalog = await refresh()
+            if (nextCatalog) {
+              const next = takeFeed(nextCatalog, { fresh: true })
+              if (next) {
+                setFeed({ source: nextCatalog.items, value: next })
+              }
+            }
+            resolve()
+          })()
         }, 350)
       })
   )
 
-  const { discover, rows } = feed
+  if (!catalog) {
+    return isError || !isPending ? (
+      <div className="pt-6">
+        <CatalogError onRetry={() => void retry()} />
+      </div>
+    ) : (
+      <PageLoader />
+    )
+  }
+
+  if (!currentFeed) {
+    return (
+      <div className="pt-6">
+        <CatalogError onRetry={() => void retry()} />
+      </div>
+    )
+  }
+
+  const { discover, rows } = currentFeed
 
   if (discover.length === 0) {
-    return null
+    return isError ? (
+      <div className="pt-6">
+        <CatalogError onRetry={() => void retry()} />
+      </div>
+    ) : null
   }
 
   return (

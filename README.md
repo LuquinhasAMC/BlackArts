@@ -106,9 +106,11 @@ src/
 
 ## Como funciona
 
-- **Dados**: `advancedsearch.php` para o catálogo e `/metadata/{identifier}`
-  para o detalhe. Thumbnails via `/services/img/{identifier}` e arquivos via
-  `/download/{identifier}/{fileName}`.
+- **Dados**: as obras e fileiras curadas vêm do repositório público
+  [`LuquinhasAMC/BlackArts-data`](https://github.com/LuquinhasAMC/BlackArts-data)
+  (JSONs servidos pelo `raw.githubusercontent.com`), carregadas via TanStack
+  Query. Metadados de cada obra vêm de `/metadata/{identifier}`. Thumbnails via
+  `/services/img/{identifier}` e arquivos via `/download/{identifier}/{fileName}`.
 - **Estado na URL**: busca, tipo, categoria e página ficam nos query params
   (`/?q=jazz&type=audio&page=2`) — dá para voltar/avançar e compartilhar a busca.
 - **Cache**: TanStack Query com `staleTime` de 5 minutos; requisições são

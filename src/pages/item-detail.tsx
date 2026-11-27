@@ -31,7 +31,7 @@ import {
 } from "@/lib/checkpoints"
 import { AudioPlaylist } from "@/components/media/audio-playlist"
 import { ARCHIVE } from "@/config/archive"
-import { findCuratedItem } from "@/data/curated"
+import { findCuratedItem, useCuratedCatalog } from "@/data/curated"
 import {
   ApiError,
   buildDetailsUrl,
@@ -186,8 +186,13 @@ function ItemDetailStage({ identifier }: { identifier: string }) {
     retry: ARCHIVE.retry,
   })
 
-  // Tags da curadoria local (independentes da API), exibidas nos metadados.
-  const curatedTags = findCuratedItem(identifier)?.tags
+  // Tags da curadoria (cópia local do catálogo, independente da API),
+  // exibidas nos metadados.
+  const { items: curatedItems } = useCuratedCatalog()
+  const curatedTags =
+    curatedItems.length > 0
+      ? findCuratedItem(curatedItems, identifier)?.tags
+      : undefined
 
   const favoriteTarget: FavoriteTarget = {
     identifier,

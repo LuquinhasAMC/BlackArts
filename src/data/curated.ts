@@ -1,12 +1,10 @@
-import type { MediaType } from "@/lib/media"
-import { buildThumbnailUrl } from "@/lib/archive-api"
-import type { ArchiveSearchItem } from "@/types/archive"
+import { useCallback, useEffect, useSyncExternalStore } from "react"
+import { toast } from "sonner"
 
-import audioItems from "./audio.json"
-import imageItems from "./image.json"
-import rowsJson from "./rows.json"
-import textItems from "./text.json"
-import videoItems from "./video.json"
+import { CURATED_DATA } from "@/config/archive"
+import { buildThumbnailUrl } from "@/lib/archive-api"
+import type { MediaType } from "@/lib/media"
+import type { ArchiveSearchItem } from "@/types/archive"
 
 /**
  * Obra curada: estrutura mínima (`id`, `type`, `url`) + metadados de
@@ -35,6 +33,12 @@ export interface CuratedRow {
   types?: MediaType[]
 }
 
+/** Catálogo completo: obras de todos os tipos + fileiras. */
+export interface CuratedCatalog {
+  items: CuratedItem[]
+  rows: CuratedRow[]
+}
+
 /** Mediatype do Internet Archive correspondente a cada tipo do app. */
 const MEDIATYPE_BY_TYPE: Record<MediaType, string> = {
   audio: "audio",
@@ -44,25 +48,409 @@ const MEDIATYPE_BY_TYPE: Record<MediaType, string> = {
   unknown: "data",
 }
 
-/** Todas as obras curadas, na ordem das bases (áudio, vídeo, imagem, texto). */
-export const CURATED_ITEMS: CuratedItem[] = [
-  ...(audioItems as CuratedItem[]),
-  ...(videoItems as CuratedItem[]),
-  ...(imageItems as CuratedItem[]),
-  ...(textItems as CuratedItem[]),
-]
+const MEDIA_TYPES = new Set<string>([
+  "audio",
+  "video",
+  "image",
+  "text",
+  "unknown",
+])
 
-/** Todas as fileiras (Netflix) definidas em rows.json. */
-export const CURATED_ROWS: CuratedRow[] = rowsJson as CuratedRow[]
+/** Arquivos de obras, um por tipo de mídia. */
+const ITEM_FILES = ["audio", "video", "image", "text"] as const
 
-/** Índice por identificador para consultas rápidas. */
-const BY_ID = new Map(CURATED_ITEMS.map((item) => [item.id, item]))
+/** Todos os arquivos de dados do repositório. */
+const ALL_FILES = [...ITEM_FILES, "rows"] as const
+
+type DataFile = (typeof ALL_FILES)[number]
+
+type FilePayloads = Record<DataFile, unknown[]>
+
+/** Prefixo do registro de metadados (versão) no IndexedDB. */
+const META_KEY = "__meta__"
+
+/** Store do IndexedDB onde o catálogo fica guardado. */
+const CACHE_STORE = "catalog"
+
+interface CacheRecord {
+  key: string
+  data?: unknown[]
+  revision?: string
+}
+
+/**
+ * Lê um JSON do repositório de dados como se fosse o endpoint de uma API
+ * somente leitura.
+ */
+async function fetchJson<T>(
+  url: string,
+  signal?: AbortSignal,
+  headers?: HeadersInit
+): Promise<T> {
+  const controller = new AbortController()
+  const timeoutId = setTimeout(
+    () => controller.abort(new Error("timeout")),
+    CURATED_DATA.requestTimeoutMs
+  )
+
+  const onOuterAbort = () => controller.abort(signal?.reason)
+  signal?.addEventListener("abort", onOuterAbort, { once: true })
+
+  try {
+    const response = await fetch(url, { signal: controller.signal, headers })
+
+    if (!response.ok) {
+      throw new Error(`Falha ao carregar ${url} (status ${response.status})`)
+    }
+
+    return (await response.json()) as T
+  } finally {
+    clearTimeout(timeoutId)
+    signal?.removeEventListener("abort", onOuterAbort)
+  }
+}
+
+/** Lê um dos arquivos de dados do repositório. */
+function fetchCatalogFile(file: DataFile, signal?: AbortSignal) {
+  return fetchJson<unknown[]>(`${CURATED_DATA.baseUrl}/${file}.json`, signal)
+}
+
+/** Lê os cinco arquivos de uma vez (só quando é preciso baixar de novo). */
+async function fetchAllFiles(signal?: AbortSignal): Promise<FilePayloads> {
+  const entries = await Promise.all(
+    ALL_FILES.map(
+      async (file) => [file, await fetchCatalogFile(file, signal)] as const
+    )
+  )
+  return Object.fromEntries(entries) as FilePayloads
+}
+
+/**
+ * Uma única requisição à API do repositório devolve o commit mais recente.
+ * Comparar esse identificador com o guardado no IndexedDB indica se algum
+ * arquivo mudou — sem baixar o conteúdo de novo à toa.
+ */
+async function fetchRepositoryRevision(
+  signal?: AbortSignal
+): Promise<string | null> {
+  try {
+    const commit = await fetchJson<{ sha?: unknown }>(
+      CURATED_DATA.revisionUrl,
+      signal,
+      { Accept: "application/vnd.github+json" }
+    )
+    return typeof commit.sha === "string" ? commit.sha : null
+  } catch {
+    // API fora do ar ou limite de requisições: segue com a cópia local.
+    return null
+  }
+}
+
+function isCuratedItem(value: unknown): value is CuratedItem {
+  if (!value || typeof value !== "object") return false
+  const item = value as Partial<CuratedItem>
+  return (
+    typeof item.id === "string" &&
+    item.id.length > 0 &&
+    typeof item.type === "string" &&
+    MEDIA_TYPES.has(item.type)
+  )
+}
+
+function isCuratedRow(value: unknown): value is CuratedRow {
+  if (!value || typeof value !== "object") return false
+  const row = value as Partial<CuratedRow>
+  return (
+    typeof row.id === "string" &&
+    row.id.length > 0 &&
+    typeof row.title === "string"
+  )
+}
+
+function buildCatalog(files: Partial<FilePayloads>): CuratedCatalog {
+  return {
+    items: ITEM_FILES.flatMap((file) =>
+      (files[file] ?? []).filter(isCuratedItem)
+    ),
+    rows: (files.rows ?? []).filter(isCuratedRow),
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Cache local (IndexedDB)                                             */
+/* ------------------------------------------------------------------ */
+
+let cacheDbPromise: Promise<IDBDatabase | null> | null = null
+
+/** Abre (uma vez) o banco IndexedDB do catálogo. `null` = indisponível. */
+function openCacheDb(): Promise<IDBDatabase | null> {
+  if (cacheDbPromise) return cacheDbPromise
+  if (typeof indexedDB === "undefined") {
+    cacheDbPromise = Promise.resolve(null)
+    return cacheDbPromise
+  }
+
+  cacheDbPromise = new Promise<IDBDatabase | null>((resolve) => {
+    try {
+      const request = indexedDB.open(CURATED_DATA.cacheDbName, 1)
+      request.onupgradeneeded = () => {
+        const db = request.result
+        if (!db.objectStoreNames.contains(CACHE_STORE)) {
+          db.createObjectStore(CACHE_STORE, { keyPath: "key" })
+        }
+      }
+      request.onsuccess = () => resolve(request.result)
+      request.onerror = () => resolve(null)
+      request.onblocked = () => resolve(null)
+    } catch {
+      resolve(null)
+    }
+  })
+
+  return cacheDbPromise
+}
+
+/** Lê a cópia local do catálogo e a versão do repositório que ela reflete. */
+async function readLocalCatalog(): Promise<{
+  catalog: CuratedCatalog
+  revision: string | null
+} | null> {
+  const db = await openCacheDb()
+  if (!db) return null
+
+  try {
+    const records = await new Promise<CacheRecord[]>((resolve, reject) => {
+      const transaction = db.transaction(CACHE_STORE, "readonly")
+      const request = transaction.objectStore(CACHE_STORE).getAll()
+      request.onsuccess = () => resolve((request.result ?? []) as CacheRecord[])
+      request.onerror = () => reject(request.error)
+    })
+
+    const files: Partial<FilePayloads> = {}
+    for (const record of records) {
+      if (record.key !== META_KEY && Array.isArray(record.data)) {
+        files[record.key as DataFile] = record.data
+      }
+    }
+
+    const catalog = buildCatalog(files)
+    if (catalog.items.length === 0) return null
+
+    const meta = records.find((record) => record.key === META_KEY)
+    return {
+      catalog,
+      revision: typeof meta?.revision === "string" ? meta.revision : null,
+    }
+  } catch {
+    return null
+  } finally {
+    db.close()
+  }
+}
+
+/** Grava a cópia local do catálogo (melhor esforço, nunca lança). */
+async function writeLocalCatalog(
+  files: FilePayloads,
+  revision: string | null
+): Promise<void> {
+  const db = await openCacheDb()
+  if (!db) return
+
+  try {
+    await new Promise<void>((resolve, reject) => {
+      const transaction = db.transaction(CACHE_STORE, "readwrite")
+      const store = transaction.objectStore(CACHE_STORE)
+      for (const file of ALL_FILES) {
+        store.put({ key: file, data: files[file] } satisfies CacheRecord)
+      }
+      store.put({ key: META_KEY, revision: revision ?? undefined })
+      transaction.oncomplete = () => resolve()
+      transaction.onerror = () => reject(transaction.error)
+      transaction.onabort = () => reject(transaction.error)
+    })
+  } catch {
+    // Sem IndexedDB (modo privado, quota): o catálogo continua em memória.
+  } finally {
+    db.close()
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Store do catálogo (compartilhado entre as telas)                    */
+/* ------------------------------------------------------------------ */
+
+type CatalogStatus = "idle" | "loading" | "ready" | "error"
+
+interface CatalogSnapshot {
+  catalog: CuratedCatalog | null
+  status: CatalogStatus
+  /** Commit do repositório que a cópia local reflete. */
+  revision: string | null
+}
+
+let snapshot: CatalogSnapshot = {
+  catalog: null,
+  status: "idle",
+  revision: null,
+}
+
+const listeners = new Set<() => void>()
+
+function emit(patch: Partial<CatalogSnapshot>) {
+  snapshot = { ...snapshot, ...patch }
+  for (const listener of listeners) listener()
+}
+
+function subscribeCurated(listener: () => void): () => void {
+  listeners.add(listener)
+  return () => listeners.delete(listener)
+}
+
+function getCuratedSnapshot(): CatalogSnapshot {
+  return snapshot
+}
+
+let loadPromise: Promise<void> | null = null
+
+/**
+ * Carrega o catálogo: usa o IndexedDB na hora e, se `checkUpdates`, faz
+ * uma requisição à API para ver se o repositório mudou.
+ */
+async function runLoad(checkUpdates: boolean): Promise<void> {
+  // 1) Cópia local: aparece na hora, mesmo offline.
+  if (!snapshot.catalog) {
+    const local = await readLocalCatalog()
+    if (local) {
+      emit({
+        catalog: local.catalog,
+        status: "ready",
+        revision: local.revision,
+      })
+    }
+  }
+
+  // 2) Sem nada guardado: primeira carga precisa baixar os arquivos.
+  if (!snapshot.catalog) {
+    emit({ status: "loading" })
+    try {
+      const [files, revision] = await Promise.all([
+        fetchAllFiles(),
+        fetchRepositoryRevision(),
+      ])
+      const catalog = buildCatalog(files)
+      if (catalog.items.length === 0) {
+        throw new Error("Catálogo vazio")
+      }
+      await writeLocalCatalog(files, revision)
+      emit({ catalog, status: "ready", revision })
+    } catch {
+      emit({ status: "error" })
+    }
+    return
+  }
+
+  // 3) Já tem cópia local: uma requisição só para saber se mudou.
+  if (!checkUpdates) return
+
+  const previousRevision = snapshot.revision
+  const revision = await fetchRepositoryRevision()
+  if (!revision || revision === previousRevision) return
+
+  try {
+    const files = await fetchAllFiles()
+    const catalog = buildCatalog(files)
+    if (catalog.items.length === 0) return
+
+    emit({ catalog, status: "ready", revision })
+    await writeLocalCatalog(files, revision)
+    // Sem versão anterior não dá para afirmar que houve mudança real
+    // (a primeira sincronização é silenciosa).
+    if (previousRevision) {
+      toast.success("Conteúdo atualizado", {
+        description: "Novas obras do repositório já estão no app.",
+      })
+    }
+  } catch {
+    // Falha ao baixar a atualização: mantém a cópia local e tenta na
+    // próxima entrada.
+  }
+}
+
+function loadCurated({ checkUpdates = false } = {}): Promise<void> {
+  if (!loadPromise) {
+    loadPromise = runLoad(checkUpdates).finally(() => {
+      loadPromise = null
+    })
+  }
+  return loadPromise
+}
+
+/**
+ * Força a releitura dos arquivos do repositório (usada no "puxar para
+ * atualizar"). Em caso de falha, mantém o catálogo atual.
+ */
+export async function refreshCurated(): Promise<CuratedCatalog | null> {
+  const revisionPromise = fetchRepositoryRevision()
+
+  try {
+    const [files, revision] = await Promise.all([
+      fetchAllFiles(),
+      revisionPromise,
+    ])
+    const catalog = buildCatalog(files)
+    if (catalog.items.length === 0) return snapshot.catalog
+
+    const nextRevision = revision ?? snapshot.revision
+    emit({ catalog, status: "ready", revision: nextRevision })
+    await writeLocalCatalog(files, nextRevision)
+    return catalog
+  } catch {
+    return snapshot.catalog
+  }
+}
+
+// Arrays vazios estáveis: evitam recriar o estado quando não há catálogo.
+const EMPTY_ITEMS: CuratedItem[] = []
+const EMPTY_ROWS: CuratedRow[] = []
+
+/**
+ * Catálogo curado do app, lido do IndexedDB e sincronizado com o
+ * repositório público. Com `checkUpdates`, a tela inicial verifica na
+ * entrada se o repositório mudou (uma requisição) e atualiza a cópia
+ * local + mostra um toast quando há novidade.
+ */
+export function useCuratedCatalog({
+  checkUpdates = false,
+}: { checkUpdates?: boolean } = {}) {
+  const state = useSyncExternalStore(
+    subscribeCurated,
+    getCuratedSnapshot,
+    getCuratedSnapshot
+  )
+
+  useEffect(() => {
+    void loadCurated({ checkUpdates })
+  }, [checkUpdates])
+
+  const retry = useCallback(() => loadCurated({ checkUpdates: true }), [])
+
+  return {
+    catalog: state.catalog,
+    items: state.catalog?.items ?? EMPTY_ITEMS,
+    rows: state.catalog?.rows ?? EMPTY_ROWS,
+    isPending: state.status === "idle" || state.status === "loading",
+    isError: state.status === "error",
+    retry,
+    refresh: refreshCurated,
+  }
+}
 
 /** Busca uma obra curada pelo identificador do Internet Archive. */
 export function findCuratedItem(
+  items: readonly CuratedItem[],
   identifier: string
 ): CuratedItem | undefined {
-  return BY_ID.get(identifier)
+  return items.find((item) => item.id === identifier)
 }
 
 /** Converte um item curado no formato usado pelos cards do catálogo. */
@@ -93,10 +481,13 @@ export function sample<T>(items: readonly T[], count: number): T[] {
 }
 
 /** Obras que entram em uma fileira (tag coincide OU tipo corresponde). */
-export function itemsForRow(row: CuratedRow): CuratedItem[] {
+export function itemsForRow(
+  row: CuratedRow,
+  items: readonly CuratedItem[]
+): CuratedItem[] {
   const tagSet = new Set(row.tags ?? [])
   const typeSet = new Set(row.types ?? [])
-  return CURATED_ITEMS.filter((item) => {
+  return items.filter((item) => {
     const byTag = item.tags?.some((tag) => tagSet.has(tag)) ?? false
     const byType = typeSet.size > 0 && typeSet.has(item.type)
     return byTag || byType

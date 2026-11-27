@@ -1,8 +1,9 @@
 // Verifica as obras curadas: existência no Internet Archive, mediatype
 // correspondente e presença de arquivos reproduzíveis pelo app.
+// Os dados vêm do repositório público BlackArts-data.
 // Uso: node scripts/verify-curated.mjs [audio|video|image|text]
-import { readFileSync } from "node:fs"
-import { join } from "node:path"
+const DATA_BASE =
+  "https://raw.githubusercontent.com/LuquinhasAMC/BlackArts-data/main"
 
 const onlyType = process.argv[2]
 
@@ -76,8 +77,13 @@ async function check(id, type) {
 const results = []
 for (const type of TYPES) {
   if (onlyType && onlyType !== type) continue
-  const file = join(process.cwd(), "src", "data", `${type}.json`)
-  const items = JSON.parse(readFileSync(file, "utf8"))
+  const response = await fetch(`${DATA_BASE}/${type}.json`)
+  if (!response.ok) {
+    console.error(`\nFalha ao baixar ${type}.json (status ${response.status})`)
+    process.exitCode = 1
+    continue
+  }
+  const items = await response.json()
   console.log(`\n=== ${type} (${items.length}) ===`)
 
   // Concorrência de 4 para não estourar a API nem demorar demais.
@@ -98,7 +104,9 @@ for (const type of TYPES) {
 console.log(`\n${"-".repeat(60)}`)
 const bad = results.filter((r) => !r.ok)
 const good = results.filter((r) => r.ok)
-console.log(`OK: ${good.length} | FALHAS: ${bad.length} | TOTAL: ${results.length}`)
+console.log(
+  `OK: ${good.length} | FALHAS: ${bad.length} | TOTAL: ${results.length}`
+)
 if (bad.length) {
   console.log("\nItens com problema:")
   for (const r of bad) {
