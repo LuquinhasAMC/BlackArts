@@ -108,9 +108,12 @@ src/
 
 - **Dados**: as obras e fileiras curadas vêm do repositório público
   [`LuquinhasAMC/BlackArts-data`](https://github.com/LuquinhasAMC/BlackArts-data)
-  (JSONs servidos pelo `raw.githubusercontent.com`), carregadas via TanStack
-  Query. Metadados de cada obra vêm de `/metadata/{identifier}`. Thumbnails via
-  `/services/img/{identifier}` e arquivos via `/download/{identifier}/{fileName}`.
+  (JSONs servidos pelo `raw.githubusercontent.com`). O endereço base fica em
+  `public/config.json` (`dataBaseUrl`) e o `config.json` do repositório define
+  o campo `dataUrls`, com o endereço de cada JSON — ver
+  [Repositório de dados](#repositório-de-dados). Metadados de cada obra vêm de
+  `/metadata/{identifier}`. Thumbnails via `/services/img/{identifier}` e
+  arquivos via `/download/{identifier}/{fileName}`.
 - **Estado na URL**: busca, tipo, categoria e página ficam nos query params
   (`/?q=jazz&type=audio&page=2`) — dá para voltar/avançar e compartilhar a busca.
 - **Cache**: TanStack Query com `staleTime` de 5 minutos; requisições são
@@ -130,6 +133,46 @@ src/
   Internet Archive.
 - **Compartilhamento**: Web Share API quando disponível (mobile), com fallback
   de copiar link + toast.
+
+## Repositório de dados
+
+O catálogo curado fica em um repositório de dados separado, editável pelo
+[BlackArts Control System](https://github.com/LuquinhasAMC/BlackArts-control-system).
+Ele precisa ter um `config.json` na raiz:
+
+```json
+{
+  "version": 3,
+  "updatedAt": "2026-11-28T00:34:00.547Z",
+  "dataUrls": {
+    "audio": "https://raw.githubusercontent.com/dono/BlackArts-data/main/audio.json",
+    "image": "https://raw.githubusercontent.com/dono/BlackArts-data/main/image.json",
+    "video": "https://raw.githubusercontent.com/dono/BlackArts-data/main/video.json",
+    "text": "https://raw.githubusercontent.com/dono/BlackArts-data/main/text.json",
+    "rows": "https://raw.githubusercontent.com/dono/BlackArts-data/main/rows.json"
+  }
+}
+```
+
+`version` avança a cada publicação e é comparada com a cópia local para saber
+se o catálogo precisa ser baixado de novo. `dataUrls` permite apontar cada JSON
+para outro caminho, branch, repositório ou CDN.
+
+Como o app (inclusive o APK) não recebe o repositório por parâmetro, o endereço
+base fica em **`public/config.json`** — edite esse arquivo no fork:
+
+```json
+{
+  "dataBaseUrl": "https://raw.githubusercontent.com/dono/BlackArts-data/main"
+}
+```
+
+Se esse arquivo não existir ou for inválido, o app usa o repositório padrão
+embutido no build. Se o `config.json` remoto não existir, ele procura
+`audio.json`, `image.json`, `video.json`, `text.json` e `rows.json` na raiz do
+repositório. Arquivos ausentes viram listas vazias; se nada for carregado, a
+cópia local do IndexedDB continua valendo e o app mostra o estado de erro com
+"Tentar novamente".
 
 ## Limitações conhecidas
 

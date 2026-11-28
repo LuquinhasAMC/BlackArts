@@ -43,17 +43,19 @@ export const ARCHIVE = {
 
 /**
  * Repositório público com os dados curados do app (obras e fileiras).
- * Os arquivos `audio.json`, `video.json`, `image.json`, `text.json` e
- * `rows.json` ficam na raiz e são servidos pelo raw.githubusercontent.com.
+ *
+ * O endereço base vem de `public/config.json` (`dataBaseUrl`) — editável no
+ * fork sem alterar código. Este valor é só o fallback para quando o
+ * config.json local não existe ou não pôde ser lido. Os arquivos e seus
+ * endereços (`dataUrls`) vêm do `config.json` do próprio repositório.
  */
 export const CURATED_DATA = {
   baseUrl: "https://raw.githubusercontent.com/LuquinhasAMC/BlackArts-data/main",
   /**
-   * Endpoint da API do GitHub que devolve o commit mais recente do
-   * repositório. Uma única requisição revela se algum arquivo mudou.
+   * config.json guarda a versão do conteúdo (`version`), avançada pelo
+   * Control System a cada alteração. Comparar esse número com o guardado
+   * localmente revela se a cópia local precisa ser atualizada.
    */
-  revisionUrl:
-    "https://api.github.com/repos/LuquinhasAMC/BlackArts-data/commits/main",
   /** Nome do banco IndexedDB com a cópia local do catálogo. */
   cacheDbName: "blackarts-data",
   /** Timeout das requisições de dados. */

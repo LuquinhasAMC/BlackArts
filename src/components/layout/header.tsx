@@ -6,6 +6,7 @@ import { FavoritesViewToggle } from "@/components/favorites/favorites-view-toggl
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { DownloadAppButton } from "./download-app-button"
+import { UpdateAppButton } from "./update-app-button"
 
 /** Título exibido na barra de acordo com a rota. */
 const PAGE_TITLES: Record<string, string> = {
@@ -46,8 +47,9 @@ export function Header() {
           {title}
         </h1>
 
-        {/* À direita: baixar o app e, fora dos favoritos, a pesquisa. */}
+        {/* À direita: atualizar/baixar o app e, fora dos favoritos, a pesquisa. */}
         <div className="ml-auto flex items-center gap-1">
+          <UpdateAppButton />
           <DownloadAppButton />
 
           {showSearch ? (

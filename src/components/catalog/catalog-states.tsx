@@ -38,7 +38,9 @@ export function CatalogError({ onRetry }: { onRetry: () => void }) {
           Não foi possível carregar o catálogo
         </p>
         <p className="mt-1 max-w-md text-sm text-muted-foreground">
-          Verifique sua conexão com a internet e tente novamente.
+          Verifique sua conexão com a internet e se o repositório de dados
+          está configurado (public/config.json → dataBaseUrl e config.json com
+          dataUrls). Depois tente novamente.
         </p>
       </div>
       <Button variant="outline" onClick={onRetry}>

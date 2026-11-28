@@ -3,6 +3,12 @@ import { toast } from "sonner"
 
 import { CURATED_DATA } from "@/config/archive"
 import { buildThumbnailUrl } from "@/lib/archive-api"
+import {
+  DATA_FILES,
+  configUrlFor,
+  resolveDataUrls,
+  type DataFile,
+} from "@/lib/data-url"
 import type { MediaType } from "@/lib/media"
 import type { ArchiveSearchItem } from "@/types/archive"
 
@@ -59,11 +65,6 @@ const MEDIA_TYPES = new Set<string>([
 /** Arquivos de obras, um por tipo de mídia. */
 const ITEM_FILES = ["audio", "video", "image", "text"] as const
 
-/** Todos os arquivos de dados do repositório. */
-const ALL_FILES = [...ITEM_FILES, "rows"] as const
-
-type DataFile = (typeof ALL_FILES)[number]
-
 type FilePayloads = Record<DataFile, unknown[]>
 
 /** Prefixo do registro de metadados (versão) no IndexedDB. */
@@ -75,7 +76,8 @@ const CACHE_STORE = "catalog"
 interface CacheRecord {
   key: string
   data?: unknown[]
-  revision?: string
+  /** Número da versão do config.json que esta cópia reflete. */
+  version?: number
 }
 
 /**
@@ -110,40 +112,91 @@ async function fetchJson<T>(
   }
 }
 
-/** Lê um dos arquivos de dados do repositório. */
-function fetchCatalogFile(file: DataFile, signal?: AbortSignal) {
-  return fetchJson<unknown[]>(`${CURATED_DATA.baseUrl}/${file}.json`, signal)
+/**
+ * config.json local (`public/config.json`): o repositório de dados do fork.
+ * Fica no projeto porque o app (inclusive o APK) não recebe esse endereço
+ * por parâmetro; quem for fazer fork edita esse arquivo.
+ */
+let localConfigPromise: Promise<string> | null = null
+
+async function loadDataBaseUrl(): Promise<string> {
+  if (!localConfigPromise) {
+    localConfigPromise = (async () => {
+      try {
+        const response = await fetch(`${import.meta.env.BASE_URL}config.json`, {
+          cache: "no-cache",
+        })
+        if (response.ok) {
+          const parsed = (await response.json()) as { dataBaseUrl?: unknown }
+          if (
+            typeof parsed.dataBaseUrl === "string" &&
+            parsed.dataBaseUrl.trim()
+          ) {
+            return parsed.dataBaseUrl.trim().replace(/\/+$/, "")
+          }
+        }
+      } catch {
+        // Sem config local: usa o padrão embutido no build.
+      }
+      return CURATED_DATA.baseUrl
+    })()
+  }
+  return localConfigPromise
 }
 
-/** Lê os cinco arquivos de uma vez (só quando é preciso baixar de novo). */
-async function fetchAllFiles(signal?: AbortSignal): Promise<FilePayloads> {
-  const entries = await Promise.all(
-    ALL_FILES.map(
-      async (file) => [file, await fetchCatalogFile(file, signal)] as const
-    )
-  )
-  return Object.fromEntries(entries) as FilePayloads
+interface DataSource {
+  /** Versão do config.json remoto (`null` se ele não existe/está ilegível). */
+  version: number | null
+  files: Record<DataFile, string>
 }
 
 /**
- * Uma única requisição à API do repositório devolve o commit mais recente.
- * Comparar esse identificador com o guardado no IndexedDB indica se algum
- * arquivo mudou — sem baixar o conteúdo de novo à toa.
+ * Lê o config.json do repositório: versão do conteúdo e endereços dos
+ * arquivos (`dataUrls`). Sem config, cai nos nomes padrão na raiz do
+ * repositório — o app continua funcionando com um repositório antigo.
  */
-async function fetchRepositoryRevision(
-  signal?: AbortSignal
-): Promise<string | null> {
+async function fetchDataSource(signal?: AbortSignal): Promise<DataSource> {
+  const baseUrl = await loadDataBaseUrl()
+  let version: number | null = null
+  let dataUrls: unknown
+
   try {
-    const commit = await fetchJson<{ sha?: unknown }>(
-      CURATED_DATA.revisionUrl,
-      signal,
-      { Accept: "application/vnd.github+json" }
+    const config = await fetchJson<{ version?: unknown; dataUrls?: unknown }>(
+      `${configUrlFor(baseUrl)}?t=${Date.now()}`,
+      signal
     )
-    return typeof commit.sha === "string" ? commit.sha : null
+    version = typeof config.version === "number" ? config.version : null
+    dataUrls = config.dataUrls
   } catch {
-    // API fora do ar ou limite de requisições: segue com a cópia local.
-    return null
+    // Config fora do ar: procura os arquivos no caminho convencional.
   }
+
+  return { version, files: resolveDataUrls(baseUrl, dataUrls) }
+}
+
+/**
+ * Lê os cinco arquivos de uma vez (só quando é preciso baixar de novo).
+ * Um arquivo ausente vira lista vazia; se nenhum responder, é erro.
+ */
+async function fetchAllFiles(
+  files: Record<DataFile, string>,
+  signal?: AbortSignal
+): Promise<FilePayloads> {
+  const results = await Promise.allSettled(
+    DATA_FILES.map((file) => fetchJson<unknown[]>(files[file], signal))
+  )
+
+  const failed = results.filter((result) => result.status === "rejected").length
+  if (failed === DATA_FILES.length) {
+    throw new Error("Nenhum arquivo de dados pôde ser carregado.")
+  }
+
+  const payloads: Partial<FilePayloads> = {}
+  DATA_FILES.forEach((file, index) => {
+    const result = results[index]
+    payloads[file] = result.status === "fulfilled" ? result.value : []
+  })
+  return payloads as FilePayloads
 }
 
 function isCuratedItem(value: unknown): value is CuratedItem {
@@ -213,7 +266,7 @@ function openCacheDb(): Promise<IDBDatabase | null> {
 /** Lê a cópia local do catálogo e a versão do repositório que ela reflete. */
 async function readLocalCatalog(): Promise<{
   catalog: CuratedCatalog
-  revision: string | null
+  version: number | null
 } | null> {
   const db = await openCacheDb()
   if (!db) return null
@@ -239,7 +292,7 @@ async function readLocalCatalog(): Promise<{
     const meta = records.find((record) => record.key === META_KEY)
     return {
       catalog,
-      revision: typeof meta?.revision === "string" ? meta.revision : null,
+      version: typeof meta?.version === "number" ? meta.version : null,
     }
   } catch {
     return null
@@ -251,7 +304,7 @@ async function readLocalCatalog(): Promise<{
 /** Grava a cópia local do catálogo (melhor esforço, nunca lança). */
 async function writeLocalCatalog(
   files: FilePayloads,
-  revision: string | null
+  version: number | null
 ): Promise<void> {
   const db = await openCacheDb()
   if (!db) return
@@ -260,10 +313,10 @@ async function writeLocalCatalog(
     await new Promise<void>((resolve, reject) => {
       const transaction = db.transaction(CACHE_STORE, "readwrite")
       const store = transaction.objectStore(CACHE_STORE)
-      for (const file of ALL_FILES) {
+      for (const file of DATA_FILES) {
         store.put({ key: file, data: files[file] } satisfies CacheRecord)
       }
-      store.put({ key: META_KEY, revision: revision ?? undefined })
+      store.put({ key: META_KEY, version: version ?? undefined })
       transaction.oncomplete = () => resolve()
       transaction.onerror = () => reject(transaction.error)
       transaction.onabort = () => reject(transaction.error)
@@ -284,14 +337,14 @@ type CatalogStatus = "idle" | "loading" | "ready" | "error"
 interface CatalogSnapshot {
   catalog: CuratedCatalog | null
   status: CatalogStatus
-  /** Commit do repositório que a cópia local reflete. */
-  revision: string | null
+  /** Versão do config.json que a cópia local reflete. */
+  version: number | null
 }
 
 let snapshot: CatalogSnapshot = {
   catalog: null,
   status: "idle",
-  revision: null,
+  version: null,
 }
 
 const listeners = new Set<() => void>()
@@ -324,7 +377,7 @@ async function runLoad(checkUpdates: boolean): Promise<void> {
       emit({
         catalog: local.catalog,
         status: "ready",
-        revision: local.revision,
+        version: local.version,
       })
     }
   }
@@ -333,39 +386,38 @@ async function runLoad(checkUpdates: boolean): Promise<void> {
   if (!snapshot.catalog) {
     emit({ status: "loading" })
     try {
-      const [files, revision] = await Promise.all([
-        fetchAllFiles(),
-        fetchRepositoryRevision(),
-      ])
+      const source = await fetchDataSource()
+      const files = await fetchAllFiles(source.files)
       const catalog = buildCatalog(files)
       if (catalog.items.length === 0) {
         throw new Error("Catálogo vazio")
       }
-      await writeLocalCatalog(files, revision)
-      emit({ catalog, status: "ready", revision })
+      await writeLocalCatalog(files, source.version)
+      emit({ catalog, status: "ready", version: source.version })
     } catch {
       emit({ status: "error" })
     }
     return
   }
 
-  // 3) Já tem cópia local: uma requisição só para saber se mudou.
+  // 3) Já tem cópia local: lê a versão do config.json e só baixa se mudou.
   if (!checkUpdates) return
 
-  const previousRevision = snapshot.revision
-  const revision = await fetchRepositoryRevision()
-  if (!revision || revision === previousRevision) return
+  const previousVersion = snapshot.version
+  const source = await fetchDataSource()
+  const version = source.version
+  if (version === null || version === previousVersion) return
 
   try {
-    const files = await fetchAllFiles()
+    const files = await fetchAllFiles(source.files)
     const catalog = buildCatalog(files)
     if (catalog.items.length === 0) return
 
-    emit({ catalog, status: "ready", revision })
-    await writeLocalCatalog(files, revision)
+    emit({ catalog, status: "ready", version })
+    await writeLocalCatalog(files, version)
     // Sem versão anterior não dá para afirmar que houve mudança real
     // (a primeira sincronização é silenciosa).
-    if (previousRevision) {
+    if (previousVersion !== null) {
       toast.success("Conteúdo atualizado", {
         description: "Novas obras do repositório já estão no app.",
       })
@@ -390,19 +442,15 @@ function loadCurated({ checkUpdates = false } = {}): Promise<void> {
  * atualizar"). Em caso de falha, mantém o catálogo atual.
  */
 export async function refreshCurated(): Promise<CuratedCatalog | null> {
-  const revisionPromise = fetchRepositoryRevision()
-
   try {
-    const [files, revision] = await Promise.all([
-      fetchAllFiles(),
-      revisionPromise,
-    ])
+    const source = await fetchDataSource()
+    const files = await fetchAllFiles(source.files)
     const catalog = buildCatalog(files)
     if (catalog.items.length === 0) return snapshot.catalog
 
-    const nextRevision = revision ?? snapshot.revision
-    emit({ catalog, status: "ready", revision: nextRevision })
-    await writeLocalCatalog(files, nextRevision)
+    const nextVersion = source.version ?? snapshot.version
+    emit({ catalog, status: "ready", version: nextVersion })
+    await writeLocalCatalog(files, nextVersion)
     return catalog
   } catch {
     return snapshot.catalog

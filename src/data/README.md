@@ -7,13 +7,14 @@
 > (`raw.githubusercontent.com/.../main/<tipo>.json`) e guarda uma cópia no
 > **IndexedDB** do navegador/WebView (não há cópias em `src/data/`).
 >
-> Ao abrir a tela inicial, **uma única requisição** à API do GitHub
-> (`/repos/LuquinhasAMC/BlackArts-data/commits/main`) verifica se o
-> repositório mudou. Se mudou, os arquivos são baixados de novo, a cópia
-> local é atualizada e um toast avisa que o conteúdo foi atualizado. Sem
-> conexão (ou se ainda não há cópia local), o app usa o IndexedDB e, quando
-> não há nada guardado e a requisição falha, mostra o erro com o botão
-> **Tentar novamente**.
+> Ao abrir a tela inicial, **uma única requisição** lê o `config.json`
+> (`/main/config.json`) e compara o número `version` com o guardado no
+> IndexedDB. O Control System avança esse número a cada publicação, então
+> versão diferente significa conteúdo novo: os arquivos são baixados de
+> novo, a cópia local é atualizada e um toast avisa. Sem conexão (ou se
+> ainda não há cópia local), o app usa o IndexedDB e, quando não há nada
+> guardado e a requisição falha, mostra o erro com o botão **Tentar
+> novamente**.
 
 Obras selecionadas **manualmente** no Internet Archive. Critério de curadoria:
 **obras de autores negros ou cuja negritude é o tema central** (religiões de
@@ -39,6 +40,7 @@ Um arquivo JSON por tipo de mídia + um arquivo de fileiras (estilo Netflix):
 | `image.json` | image | Fotografia: samba de roda, terreiros, escolas de samba, capoeira  | 18    |
 | `text.json`  | text  | Literatura afro-brasileira, poesia, umbanda, candomblé e história | 79    |
 | `rows.json`  | —     | Fileiras de conteúdo (Netflix)                                    | 27    |
+| `config.json` | —    | Versão do conteúdo (`version`) e data da última alteração        | —     |
 
 Cada item segue a estrutura mínima `id`/`type`/`url`, com campos de exibição
 opcionais:
